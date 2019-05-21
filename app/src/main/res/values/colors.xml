@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#D81B60</color>
+    <color name="white">#FFFFFF</color>
+    <color name="dark_gray">#6C6C6C</color>
+
+    <color name="colorPrimary">#80a3bd</color>
+    <color name="colorPrimaryDark">#51748d</color>
+    <color name="colorPrimaryLight">#b1d4f0</color>
+
+    <color name="cinza_claro">#9FBED6</color>
+    <color name="cinza">#80A3BD</color>
+    <color name="cinza_medio">#5F798C</color>
+    <color name="cinza_escuro1">#203647</color>
+    <color name="cinza_escuro2">#2B3740</color>
+    <color name="text_color">#54432b</color>
+</resources>

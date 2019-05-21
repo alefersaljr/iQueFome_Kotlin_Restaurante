@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "148332502364",
+    "firebase_url": "https://iquefome-kotlin.firebaseio.com",
+    "project_id": "iquefome-kotlin",
+    "storage_bucket": "iquefome-kotlin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:148332502364:android:477c16f084fd7b3e",
+        "android_client_info": {
+          "package_name": "br.com.alexandre_salgueirinho.iquefome_kotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "148332502364-otrtuk08245nvbcgfgvgvvk1tgc8mtl0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.alexandre_salgueirinho.iquefome_kotlin",
+            "certificate_hash": "edb5044374502a115c770c9d4809f55258c3b753"
+          }
+        },
+        {
+          "client_id": "148332502364-fikhd09du3iojrie9ta696k4o0csbl6f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD20obwXnoQwqaSsUen4npw20tQciqHUss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "148332502364-fikhd09du3iojrie9ta696k4o0csbl6f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:148332502364:android:c7bcdd664a49fb7d",
+        "android_client_info": {
+          "package_name": "br.com.alexandre_salgueirinho.iquefome_restaurante"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "148332502364-7m74grufsurifht6hiqdnj9sjtjbctk2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.alexandre_salgueirinho.iquefome_restaurante",
+            "certificate_hash": "edb5044374502a115c770c9d4809f55258c3b753"
+          }
+        },
+        {
+          "client_id": "148332502364-fikhd09du3iojrie9ta696k4o0csbl6f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD20obwXnoQwqaSsUen4npw20tQciqHUss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "148332502364-fikhd09du3iojrie9ta696k4o0csbl6f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
