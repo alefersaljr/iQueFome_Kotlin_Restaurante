@@ -9,22 +9,31 @@
         android:background="@drawable/back_default">
 
     <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50sp"
+            android:id="@+id/cadastro_Title_Cadastro"
+            android:layout_width="match_parent"
+            android:layout_height="56sp"
+            android:paddingTop="13sp"
             android:text="Cadastro de Pratos"
-            android:textColor="@color/text_color"
+            android:textAlignment="center"
+            android:textSize="30sp"
             android:textStyle="bold"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:textColor="@color/text_color"/>
+
+    <View
+            android:layout_width="250sp"
+            android:layout_height="4sp"
+            android:layout_marginTop="5sp"
+            android:layout_centerHorizontal="true"
+            android:background="@color/text_color"
+            android:layout_below="@+id/cadastro_Title_Cadastro"/>
+
+    <!--<include-->
+    <!--android:id="@+id/cadastro_Toolbar"-->
+    <!--layout="@layout/layout_toolbar"/>-->
+
 
     <ScrollView
-            android:layout_below="@+id/title"
+            android:layout_below="@+id/cadastro_Title_Cadastro"
             android:layout_marginTop="20sp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -34,21 +43,33 @@
                 android:layout_marginTop="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="20sp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/cadastro_CircleImage_Prato_Foto"
+                    android:layout_width="100sp"
+                    android:layout_height="100sp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20sp"
+                    app:civ_border_width="2sp"
+                    app:civ_border_color="@color/dark_gray"
+                    android:src="@color/text_color"/>
 
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/login_Textfild_nome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30sp"
-                    android:layout_marginRight="30sp">
+                    android:layout_marginRight="30sp"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
                 <EditText
                         android:id="@+id/login_EditText_nome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:hint="Nome"
+                        android:hint="Nome do Prato"
                         android:textColor="@color/text_color"
                         android:inputType="textEmailAddress"/>
 
@@ -59,14 +80,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30sp"
-                    android:layout_marginRight="30sp">
+                    android:layout_marginRight="30sp"
+                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
                 <EditText
                         android:id="@+id/login_EditText_rest"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:hint="Restaurante"
+                        android:hint="Nome do Restaurante"
                         android:textColor="@color/text_color"
                         android:inputType="textEmailAddress"/>
 
@@ -84,7 +106,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:hint="Preco"
+                        android:hint="Preço do Prato"
                         android:textColor="@color/text_color"
                         android:inputType="textEmailAddress"/>
 
@@ -102,7 +124,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:hint="Tipo"
+                        android:hint="Tipo do Prato"
                         android:textColor="@color/text_color"
                         android:inputType="textEmailAddress"/>
 
@@ -120,7 +142,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:hint="TipoComida"
+                        android:hint="Tipo de Comida"
                         android:textColor="@color/text_color"
                         android:inputType="textEmailAddress"/>
 
@@ -138,36 +160,40 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:hint="Descricao"
+                        android:hint="Descrição do Prato"
                         android:textColor="@color/text_color"
                         android:inputType="textEmailAddress"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/prato_Foto"
-                    android:layout_width="70sp"
-                    android:layout_height="70sp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20sp"
-                    app:civ_border_width="2sp"
-                    app:civ_border_color="@color/dark_gray"
-                    android:src="@color/white"/>
-
-            <Button
-                    android:id="@+id/cadastrar_Button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20sp"
-                    android:layout_marginBottom="20sp"
-                    android:padding="10sp"
-                    android:text="Cadastrar"
-                    android:background="@color/white" />
-
         </LinearLayout>
 
     </ScrollView>
+
+    <Button
+            android:id="@+id/cadastrar_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20sp"
+            android:padding="10sp"
+            android:text="Cadastrar"
+            android:background="@drawable/round_button_default"/>
+
+    <Button
+            android:id="@+id/cadastro_Button_Image"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:layout_below="@id/cadastro_Title_Cadastro"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60sp"
+            android:padding="5sp"
+            android:background="@drawable/round_button_image"
+            android:text="Imagem do prato"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:gravity="center"/>
 
 </RelativeLayout>

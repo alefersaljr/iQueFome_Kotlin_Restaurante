@@ -14,4 +14,5 @@
     <color name="cinza_escuro1">#203647</color>
     <color name="cinza_escuro2">#2B3740</color>
     <color name="text_color">#54432b</color>
+    <color name="text_color_light">#816E54</color>
 </resources>

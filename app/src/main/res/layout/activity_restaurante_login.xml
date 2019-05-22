@@ -79,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/round_button"
+                android:background="@drawable/round_button_default"
                 android:textStyle="bold"
                 android:text="login"
                 android:textColor="@color/text_color"/>

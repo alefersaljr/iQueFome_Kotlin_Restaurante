@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.Toast
 import android.os.Bundle
 import android.os.Parcelable
+import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import com.google.firebase.database.FirebaseDatabase
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         FirebaseAuth.getInstance().signInWithEmailAndPassword("a.salgueirinho@cinq.com.br", "123456")
 
-        prato_Foto.setOnClickListener {
+        cadastro_Button_Image.setOnClickListener {
             Log.d("ClienteCadastroActivity", "Try to show photo")
 
             val intent = Intent(Intent.ACTION_PICK)
@@ -41,37 +42,59 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        cadastro_Button_Image.visibility = View.GONE
+
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             Log.d("ClienteCadastroActivity", "Photo was selected")
 
             uriImagemSelecionada = data.data
             val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uriImagemSelecionada)
 
-            prato_Foto.setImageBitmap(bitmap)
+            cadastro_CircleImage_Prato_Foto.setImageBitmap(bitmap)
         }
     }
 
     private fun pratoFotoRegister() {
 
-
         cadastrar_Button.setOnClickListener {
-            if (uriImagemSelecionada == null) return@setOnClickListener
+            if (uriImagemSelecionada == null) {
+                Toast.makeText(this, "Selecione a imagem do prato", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            } else if (validaCompos()) {
 
-            val nomeArquivo = UUID.randomUUID().toString()
-            val ref = FirebaseStorage.getInstance().getReference("images/$nomeArquivo")
+                val nomeArquivo = UUID.randomUUID().toString()
+                val ref = FirebaseStorage.getInstance().getReference("images/$nomeArquivo")
 
-            ref.putFile(uriImagemSelecionada!!)
-                .addOnSuccessListener {
-                    ref.downloadUrl.addOnSuccessListener {
-                        Log.d("ClienteCadastroActivity", "Link do arquivo: $it")
+                ref.putFile(uriImagemSelecionada!!)
+                    .addOnSuccessListener {
+                        ref.downloadUrl.addOnSuccessListener {
+                            Log.d("ClienteCadastroActivity", "Link do arquivo: $it")
 
-                        savePratoToFirebaseDatabase(it.toString())
+                            savePratoToFirebaseDatabase(it.toString())
+                        }
+                    }.addOnFailureListener {
+                        Log.d("ClienteCadastroActivity", "Erro no upload")
+                        Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
                     }
-                }.addOnFailureListener {
-                    Log.d("ClienteCadastroActivity", "Erro no upload")
-                    Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
-                }
+            }
         }
+    }
+
+    private fun validaCompos(): Boolean {
+        if (login_EditText_nome.text.isEmpty()) {
+            Toast.makeText(this, "Informe o nome do prato", Toast.LENGTH_SHORT).show()
+        } else if (login_EditText_rest.text.isEmpty()) {
+            Toast.makeText(this, "Informe o nome do restaurante", Toast.LENGTH_SHORT).show()
+        } else if (login_EditText_Preco.text.isEmpty()) {
+            Toast.makeText(this, "Informe o preço do prato", Toast.LENGTH_SHORT).show()
+        } else if (login_EditText_Tipo.text.isEmpty()) {
+            Toast.makeText(this, "Informe o tipo do prato", Toast.LENGTH_SHORT).show()
+        } else if (login_EditText_TipoComida.text.isEmpty()) {
+            Toast.makeText(this, "Informe o tipo da comida", Toast.LENGTH_SHORT).show()
+        } else if (login_EditText_Descricao.text.isEmpty()) {
+            Toast.makeText(this, "Informe a descrição do prato", Toast.LENGTH_SHORT).show()
+        } else return true
+        return false
     }
 
     private fun savePratoToFirebaseDatabase(urlImagemPerfil: String) {
@@ -109,7 +132,7 @@ class Pratos(
     val pratoDescricao: String,
     val pratoTipo: String,
     val pratoTipoComida: String
-): Parcelable {
+) : Parcelable {
     constructor() : this("", "", "", "", "", "", "", "")
 }
 
