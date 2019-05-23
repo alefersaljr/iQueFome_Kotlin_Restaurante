@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="360sp"
+                android:layout_height="400sp"
+                android:layout_gravity="center"
+                android:background="@drawable/back_default">
+
+
+    <LinearLayout
+            android:id="@+id/cabecalho"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5sp">
+
+
+        <TextView
+                android:id="@+id/popup_TextView_Titulo_RecuperarSenha"
+                android:layout_width="0sp"
+                android:layout_height="36sp"
+                android:layout_weight=".9"
+                android:gravity="center"
+                android:text="Recuperação de Senha"
+                android:textColor="@color/text_color"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textAlignment="center"/>
+
+        <TextView
+                android:id="@+id/popup_Button_Close"
+                android:layout_width="0sp"
+                android:layout_height="36sp"
+                android:layout_weight=".1"
+                android:background="@drawable/round_close_button"
+                android:text="X"
+                android:textColor="@color/text_color"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_gravity="end"
+                android:gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/Linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="30sp"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_margin="5sp">
+
+        <TextView
+                android:id="@+id/popup_TextView_ParaRecuperar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30sp"
+                android:layout_marginEnd="30sp"
+                android:gravity="center"
+                android:text="Para recuperar sua senha,\n favor informar o email cadastrado."
+                android:textSize="18sp"
+                android:textColor="@color/text_color"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="56sp"
+                android:layout_marginTop="30sp"
+                android:layout_marginStart="30sp"
+                android:layout_marginEnd="30sp">
+
+            <EditText
+                    android:id="@+id/popup_EditText_Email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Email"
+                    android:textColorHint="@color/text_color"
+                    android:textColor="@color/text_color"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:inputType="textEmailAddress"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="40sp"
+            android:orientation="vertical">
+
+        <Button
+                android:id="@+id/popup_Button_Enviar"
+                android:layout_below="@+id/Linear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/round_button_default"
+                android:text="ENVIAR"
+                android:textColor="@color/text_color"
+                android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <ProgressBar
+            android:id="@+id/recuperar_ProgressBar"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
+
+</RelativeLayout>
