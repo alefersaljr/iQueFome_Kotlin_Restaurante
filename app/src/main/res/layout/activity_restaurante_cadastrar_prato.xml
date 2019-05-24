@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity"
-        android:background="@drawable/back_default">
+        android:background="@android:color/white">
 
     <TextView
             android:id="@+id/cadastro_Title_Cadastro"
@@ -17,14 +17,14 @@
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="@color/text_color"/>
+            android:textColor="@color/text_color_dark"/>
 
     <View
             android:layout_width="250sp"
             android:layout_height="4sp"
             android:layout_marginTop="5sp"
             android:layout_centerHorizontal="true"
-            android:background="@color/text_color"
+            android:background="@color/text_color_dark"
             android:layout_below="@+id/cadastro_Title_Cadastro"/>
 
     <!--<include-->
@@ -180,6 +180,8 @@
             android:layout_marginBottom="20sp"
             android:padding="10sp"
             android:text="Cadastrar"
+            android:drawableStart="@drawable/icon_save"
+            android:drawablePadding="5sp"
             android:background="@drawable/round_button_default"/>
 
     <Button

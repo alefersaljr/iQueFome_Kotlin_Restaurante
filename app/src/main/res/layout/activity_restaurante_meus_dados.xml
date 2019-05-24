@@ -3,9 +3,10 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent" android:layout_height="match_parent"
-        tools:context=".MeusDados"
-        android:background="@drawable/back_default">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".RestauranteMeusDados"
+        android:background="@android:color/white">
 
     <TextView
             android:id="@+id/cadastro_TextView_Cadastro"
@@ -16,18 +17,18 @@
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="@color/text_color"/>
+            android:textColor="@color/text_color_dark"/>
 
     <View
             android:layout_width="250sp"
             android:layout_height="4sp"
             android:layout_marginTop="5sp"
             android:layout_centerHorizontal="true"
-            android:background="@color/text_color"
-            android:layout_below="@+id/profile_Toolbar"/>
+            android:background="@color/text_color_dark"
+            android:layout_below="@+id/meusDados_Toolbar"/>
 
     <include
-            android:id="@+id/profile_Toolbar"
+            android:id="@+id/meusDados_Toolbar"
             layout="@layout/layout_toolbar"/>
 
     <RelativeLayout android:layout_width="match_parent"
@@ -45,7 +46,7 @@
                 android:layout_marginTop="5sp"
                 android:layout_marginLeft="10sp"
                 app:civ_border_width="2sp"
-                app:civ_border_color="@color/text_color"/>
+                app:civ_border_color="@color/text_color_light"/>
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -84,425 +85,432 @@
                 android:id="@+id/Scrow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/botaoHistoricoPedidos_layout"
+                android:layout_above="@+id/meusDados_Button_Layout_EditarDados"
                 android:layout_below="@+id/perfil_image"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="15dp"
                 android:orientation="vertical">
 
-            <LinearLayout
-                    android:id="@+id/meusDados_Layout_Operador"
+            <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content">
+
 
                 <LinearLayout
+                        android:id="@+id/meusDados_Layout_Operador"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_alignParentStart="true">
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
-                    <TextView
-                            android:id="@+id/meusDados_Operador_Label_Nome"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".09"
-                            android:layout_marginTop="28sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Nome:"
-                            android:textColor="@color/text_color"
-                            android:textSize="18sp"/>
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-                    <TextView
-                            android:id="@+id/meusDados_Operador_Data_Nome"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".5"
-                            android:layout_marginTop="28sp"
-                            android:layout_marginStart="5sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Nome Usuário"
-                            android:textColor="@color/text_color"
-                            android:textSize="16sp"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
+                        <TextView
+                                android:id="@+id/meusDados_Operador_Label_Nome"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".09"
+                                android:layout_marginTop="28sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Nome:"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/meusDados_Operador_Data_Nome"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".5"
+                                android:layout_marginTop="28sp"
+                                android:layout_marginStart="5sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Nome Usuário"
+                                android:textColor="@color/text_color_light"
+                                android:textSize="16sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_alignParentStart="true">
+
+                        <TextView
+                                android:id="@+id/meusDados_Operador_Label_Sobrenome"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".2"
+                                android:layout_marginTop="28sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Sobrenome:"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/meusDados_Operador_Data_Sobrenome"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".5"
+                                android:layout_marginTop="28sp"
+                                android:layout_marginStart="5sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Sobrenome Usuário"
+                                android:textColor="@color/text_color_light"
+                                android:textSize="16sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_alignParentStart="true">
+
+                        <TextView
+                                android:id="@+id/meusDados_Operador_Label_Celular"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".1"
+                                android:layout_marginTop="28sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Celular:"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/meusDados_Operador_Data_Celular"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".45"
+                                android:layout_marginTop="28sp"
+                                android:layout_marginStart="5sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Número Celular"
+                                android:textColor="@color/text_color_light"
+                                android:textSize="16sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_alignParentStart="true">
+
+                        <TextView
+                                android:id="@+id/meusDados_Operador_Label_Cargo"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".09"
+                                android:layout_marginTop="28sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Cargo:"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/meusDados_Operador_Data_Cargo"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".45"
+                                android:layout_marginTop="28sp"
+                                android:layout_marginStart="5sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Cargo do Usuário"
+                                android:textColor="@color/text_color_light"
+                                android:textSize="16sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_alignParentStart="true">
+
+                        <TextView
+                                android:id="@+id/meusDados_Operador_Label_Nome_Restaurante"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".35"
+                                android:layout_marginTop="28sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Nome Restaurante:"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/meusDados_Operador_Data_Nome_Restaurante"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".45"
+                                android:layout_marginTop="28sp"
+                                android:layout_marginStart="5sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Nome do Restaurante"
+                                android:textColor="@color/text_color_light"
+                                android:textSize="16sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_alignParentStart="true">
+
+                        <TextView
+                                android:id="@+id/meusDados_Operador_Label_Email"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".08"
+                                android:layout_marginTop="26sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Email:"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/meusDados_Operador_Data_Email"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".45"
+                                android:layout_marginTop="26sp"
+                                android:layout_marginStart="5sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Email"
+                                android:textColor="@color/text_color_light"
+                                android:textSize="16sp"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
+                        android:id="@+id/meusDados_Layout_Gerente"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_alignParentStart="true">
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
-                    <TextView
-                            android:id="@+id/meusDados_Operador_Label_Sobrenome"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".2"
-                            android:layout_marginTop="28sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Sobrenome:"
-                            android:textColor="@color/text_color"
-                            android:textSize="18sp"/>
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-                    <TextView
-                            android:id="@+id/meusDados_Operador_Data_Sobrenome"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".5"
-                            android:layout_marginTop="28sp"
-                            android:layout_marginStart="5sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Sobrenome Usuário"
-                            android:textColor="@color/text_color"
-                            android:textSize="16sp"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Label_Nome"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".09"
+                                android:layout_marginTop="28sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Nome:"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Data_Nome"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".5"
+                                android:layout_marginTop="28sp"
+                                android:layout_marginStart="5sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Nome Usuário"
+                                android:textColor="@color/text_color_light"
+                                android:textSize="16sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_alignParentStart="true">
+
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Label_CEP"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".08"
+                                android:layout_marginTop="28sp"
+                                android:fontFamily="sans-serif"
+                                android:text="CEP:"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Data_CEP"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".5"
+                                android:layout_marginTop="28sp"
+                                android:layout_marginStart="5sp"
+                                android:fontFamily="sans-serif"
+                                android:text="CEP do Usuário"
+                                android:textColor="@color/text_color_light"
+                                android:textSize="16sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_alignParentStart="true">
+
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Label_Cidade"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".1"
+                                android:layout_marginTop="28sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Cidade:"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Data_Cidade"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".45"
+                                android:layout_marginTop="28sp"
+                                android:layout_marginStart="5sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Número Cidade"
+                                android:textColor="@color/text_color_light"
+                                android:textSize="16sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_alignParentStart="true">
+
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Label_Rua"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".06"
+                                android:layout_marginTop="28sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Rua:"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Data_Rua"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".45"
+                                android:layout_marginTop="28sp"
+                                android:layout_marginStart="5sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Rua do Usuário"
+                                android:textColor="@color/text_color_light"
+                                android:textSize="16sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_alignParentStart="true">
+
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Label_Numero"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".23"
+                                android:layout_marginTop="28sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Complemento:"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Data_Numero"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".45"
+                                android:layout_marginTop="28sp"
+                                android:layout_marginStart="5sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Complemento Restaurante"
+                                android:textColor="@color/text_color_light"
+                                android:textSize="16sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_alignParentStart="true">
+
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Label_Email"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".08"
+                                android:layout_marginTop="26sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Email:"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Data_Email"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".45"
+                                android:layout_marginTop="26sp"
+                                android:layout_marginStart="5sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Email"
+                                android:textColor="@color/text_color_light"
+                                android:textSize="16sp"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_alignParentStart="true">
-
-                    <TextView
-                            android:id="@+id/meusDados_Operador_Label_Celular"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".1"
-                            android:layout_marginTop="28sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Celular:"
-                            android:textColor="@color/text_color"
-                            android:textSize="18sp"/>
-
-                    <TextView
-                            android:id="@+id/meusDados_Operador_Data_Celular"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".45"
-                            android:layout_marginTop="28sp"
-                            android:layout_marginStart="5sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Número Celular"
-                            android:textColor="@color/text_color"
-                            android:textSize="16sp"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_alignParentStart="true">
-
-                    <TextView
-                            android:id="@+id/meusDados_Operador_Label_Cargo"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".09"
-                            android:layout_marginTop="28sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Cargo:"
-                            android:textColor="@color/text_color"
-                            android:textSize="18sp"/>
-
-                    <TextView
-                            android:id="@+id/meusDados_Operador_Data_Cargo"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".45"
-                            android:layout_marginTop="28sp"
-                            android:layout_marginStart="5sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Cargo do Usuário"
-                            android:textColor="@color/text_color"
-                            android:textSize="16sp"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_alignParentStart="true">
-
-                    <TextView
-                            android:id="@+id/meusDados_Operador_Label_Nome_Restaurante"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".35"
-                            android:layout_marginTop="28sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Nome Restaurante:"
-                            android:textColor="@color/text_color"
-                            android:textSize="18sp"/>
-
-                    <TextView
-                            android:id="@+id/meusDados_Operador_Data_Nome_Restaurante"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".45"
-                            android:layout_marginTop="28sp"
-                            android:layout_marginStart="5sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Nome do Restaurante"
-                            android:textColor="@color/text_color"
-                            android:textSize="16sp"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_alignParentStart="true">
-
-                    <TextView
-                            android:id="@+id/meusDados_Operador_Label_Email"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".08"
-                            android:layout_marginTop="26sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Email:"
-                            android:textColor="@color/text_color"
-                            android:textSize="18sp"/>
-
-                    <TextView
-                            android:id="@+id/meusDados_Operador_Data_Email"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".45"
-                            android:layout_marginTop="26sp"
-                            android:layout_marginStart="5sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Email"
-                            android:textColor="@color/text_color"
-                            android:textSize="16sp"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                    android:id="@+id/meusDados_Layout_Gerente"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_alignParentStart="true">
-
-                    <TextView
-                            android:id="@+id/meusDados_Gerente_Label_Nome"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".09"
-                            android:layout_marginTop="28sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Nome:"
-                            android:textColor="@color/text_color"
-                            android:textSize="18sp"/>
-
-                    <TextView
-                            android:id="@+id/meusDados_Gerente_Data_Nome"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".5"
-                            android:layout_marginTop="28sp"
-                            android:layout_marginStart="5sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Nome Usuário"
-                            android:textColor="@color/text_color"
-                            android:textSize="16sp"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_alignParentStart="true">
-
-                    <TextView
-                            android:id="@+id/meusDados_Gerente_Label_Sobrenome"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".2"
-                            android:layout_marginTop="28sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Sobrenome:"
-                            android:textColor="@color/text_color"
-                            android:textSize="18sp"/>
-
-                    <TextView
-                            android:id="@+id/meusDados_Gerente_Data_Sobrenome"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".5"
-                            android:layout_marginTop="28sp"
-                            android:layout_marginStart="5sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Sobrenome Usuário"
-                            android:textColor="@color/text_color"
-                            android:textSize="16sp"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_alignParentStart="true">
-
-                    <TextView
-                            android:id="@+id/meusDados_Gerente_Label_Celular"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".1"
-                            android:layout_marginTop="28sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Celular:"
-                            android:textColor="@color/text_color"
-                            android:textSize="18sp"/>
-
-                    <TextView
-                            android:id="@+id/meusDados_Gerente_Data_Celular"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".45"
-                            android:layout_marginTop="28sp"
-                            android:layout_marginStart="5sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Número Celular"
-                            android:textColor="@color/text_color"
-                            android:textSize="16sp"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_alignParentStart="true">
-
-                    <TextView
-                            android:id="@+id/meusDados_Gerente_Label_Cargo"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".09"
-                            android:layout_marginTop="28sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Cargo:"
-                            android:textColor="@color/text_color"
-                            android:textSize="18sp"/>
-
-                    <TextView
-                            android:id="@+id/meusDados_Gerente_Data_Cargo"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".45"
-                            android:layout_marginTop="28sp"
-                            android:layout_marginStart="5sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Cargo do Usuário"
-                            android:textColor="@color/text_color"
-                            android:textSize="16sp"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_alignParentStart="true">
-
-                    <TextView
-                            android:id="@+id/meusDados_Gerente_Label_Nome_Restaurante"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".35"
-                            android:layout_marginTop="28sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Nome Restaurante:"
-                            android:textColor="@color/text_color"
-                            android:textSize="18sp"/>
-
-                    <TextView
-                            android:id="@+id/meusDados_Gerente_Data_Nome_Restaurante"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".45"
-                            android:layout_marginTop="28sp"
-                            android:layout_marginStart="5sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Nome do Restaurante"
-                            android:textColor="@color/text_color"
-                            android:textSize="16sp"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_alignParentStart="true">
-
-                    <TextView
-                            android:id="@+id/meusDados_Gerente_Label_Email"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".08"
-                            android:layout_marginTop="26sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Email:"
-                            android:textColor="@color/text_color"
-                            android:textSize="18sp"/>
-
-                    <TextView
-                            android:id="@+id/meusDados_Gerente_Data_Email"
-                            android:layout_width="0sp"
-                            android:layout_height="25sp"
-                            android:layout_weight=".45"
-                            android:layout_marginTop="26sp"
-                            android:layout_marginStart="5sp"
-                            android:fontFamily="sans-serif"
-                            android:text="Email"
-                            android:textColor="@color/text_color"
-                            android:textSize="16sp"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
+            </RelativeLayout>
 
         </ScrollView>
 
         <LinearLayout
-                android:id="@+id/botaoHistoricoPedidos_layout"
+                android:id="@+id/meusDados_Button_Layout_EditarDados"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -511,14 +519,16 @@
                 android:orientation="vertical">
 
             <Button
-                    android:id="@+id/profile_Button_Historico"
-                    android:layout_width="match_parent"
+                    android:id="@+id/meusDados_Button_EditarDados"
+                    android:layout_width="wrap_content"
                     android:layout_height="56dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
+                    android:padding="10sp"
                     android:background="@drawable/round_button_default"
-                    android:text="Editar Meus Dados"
+                    android:text="Editar Dados"
+                    android:drawableStart="@drawable/icon_edit"
                     android:textColor="#2b1c00"/>
 
         </LinearLayout>
@@ -526,7 +536,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-            android:id="@+id/profile_ProgressBar"
+            android:id="@+id/meusDados_ProgressBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#77b8a076"

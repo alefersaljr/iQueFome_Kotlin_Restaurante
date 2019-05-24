@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_restaurante_logado.*
 class RestauranteLogado : AppCompatActivity() {
 
     lateinit var mToolbar: Toolbar
+    var mAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,16 +24,15 @@ class RestauranteLogado : AppCompatActivity() {
         logado_Button_Add.setOnClickListener {
             goToAddFood()
         }
-
-        logado_Button_logout.setOnClickListener {
-            logout()
-        }
     }
 
-    private fun logout() {
-        FirebaseAuth.getInstance().signOut()
-        startActivity(Intent(this, RestauranteLogin::class.java))
-        finish()
+    override fun onStart() {
+        super.onStart()
+
+        if (mAuth.currentUser == null){
+            startActivity(Intent(this, RestauranteLogin::class.java))
+            finish()
+        }
     }
 
     private fun goToAddFood() {
@@ -48,7 +48,7 @@ class RestauranteLogado : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.action_menu_icon_account -> {
-                startActivity(Intent(this, MeusDados::class.java))
+                startActivity(Intent(this, RestauranteMeusDados::class.java))
             }
         }
         return true
