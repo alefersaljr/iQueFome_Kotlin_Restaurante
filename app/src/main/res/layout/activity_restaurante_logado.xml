@@ -7,6 +7,31 @@
         tools:context=".RestauranteLogado"
         android:background="@drawable/back_default">
 
+    <TextView
+            android:id="@+id/logado_TextView_Cadastro"
+            android:layout_width="match_parent"
+            android:layout_height="56sp"
+            android:paddingTop="13sp"
+            android:text="Pratos Cadastrados"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_color"/>
+
+    <View
+            android:id="@+id/logado_View"
+            android:layout_width="250sp"
+            android:layout_height="4sp"
+            android:layout_marginTop="5sp"
+            android:layout_centerHorizontal="true"
+            android:background="@color/text_color"
+            android:layout_below="@+id/logado_Toolbar"/>
+
+    <include
+            android:id="@+id/logado_Toolbar"
+            layout="@layout/layout_toolbar"/>
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/logado_Button_Add"
             android:layout_width="wrap_content"

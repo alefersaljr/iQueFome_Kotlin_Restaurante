@@ -62,7 +62,8 @@
                     android:id="@+id/cadastro_Layout_Funcionario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="30sp"
+                    android:layout_marginLeft="30sp"
+                    android:layout_marginRight="30sp"
                     android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -184,7 +185,7 @@
                             android:ems="10"
                             android:hint="Senha (Mínimo 6 Caracteres)"
                             android:textColorHint="@color/text_color"
-                            android:inputType="text"/>
+                            android:inputType="textPassword"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -195,7 +196,8 @@
                     android:id="@+id/cadastro_Layout_Restaurante"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="30sp"
+                    android:layout_marginLeft="30sp"
+                    android:layout_marginRight="30sp"
                     android:orientation="vertical"
                     android:visibility="gone">
 

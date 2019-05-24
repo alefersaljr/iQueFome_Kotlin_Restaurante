@@ -11,8 +11,11 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".RestauranteCadastro"
-                  android:windowSoftInputMode="adjustPan|stateHidden">
+        <activity android:name=".MeusDados">
+        </activity>
+        <activity
+                android:name=".RestauranteCadastro"
+                android:windowSoftInputMode="adjustPan|stateHidden">
         </activity>
         <activity
                 android:name=".RestauranteLogado"
