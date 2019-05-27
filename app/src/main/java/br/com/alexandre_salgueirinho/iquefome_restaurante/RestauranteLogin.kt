@@ -67,7 +67,7 @@ class RestauranteLogin : AppCompatActivity() {
     }
 
     private fun goToForgotPassword() {
-        Toast.makeText(this, "Recuperação em desenvolvimento, aguarde.", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Recuperação em desenvolvimento, aguarde.", Toast.LENGTH_SHORT).show()
 
         val mDialog = LayoutInflater.from(this).inflate(R.layout.popup_recuperar, null)
         val mBuilder = AlertDialog.Builder(this).setView(mDialog)

@@ -3,7 +3,7 @@
                 android:layout_width="360sp"
                 android:layout_height="400sp"
                 android:layout_gravity="center"
-                android:background="@drawable/back_default">
+                android:background="@color/white">
 
 
     <LinearLayout
@@ -21,7 +21,7 @@
                 android:layout_weight=".9"
                 android:gravity="center"
                 android:text="Recuperação de Senha"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text_color_dark"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:textAlignment="center"/>
@@ -33,7 +33,7 @@
                 android:layout_weight=".1"
                 android:background="@drawable/round_close_button"
                 android:text="X"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text_color_dark"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:layout_gravity="end"
@@ -100,7 +100,7 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/round_button_default"
                 android:text="ENVIAR"
-                android:textColor="@color/text_color"
+                android:textColor="@color/text_color_dark"
                 android:textStyle="bold"/>
 
     </LinearLayout>

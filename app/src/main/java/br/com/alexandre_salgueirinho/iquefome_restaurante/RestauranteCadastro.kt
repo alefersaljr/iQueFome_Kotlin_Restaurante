@@ -6,59 +6,77 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
+import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Operador
+import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Restaurante
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_restaurante_cadastro.*
 import java.lang.Exception
 
 class RestauranteCadastro : AppCompatActivity() {
 
     var tipoCadastro = "Funcionário"
+    lateinit var mToolbar: Toolbar
     var mAuth = FirebaseAuth.getInstance()
+    var mDatabase = FirebaseDatabase.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurante_cadastro)
 
+        mToolbar = findViewById(R.id.cadastro_Toolbar)
+        setSupportActionBar(mToolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         cadastro_Switch_Button.setOnClickListener {
-            if (cadastro_Switch_Button.isChecked) {
-                tipoCadastro = "Restaurante"
-                Toast.makeText(this, "$tipoCadastro", Toast.LENGTH_SHORT).show()
-
-                cadastro_Layout_Funcionario.visibility = View.GONE
-                cadastro_Layout_Restaurante.visibility = View.VISIBLE
-            } else {
-                cadastro_Layout_Restaurante.visibility = View.GONE
-                cadastro_Layout_Funcionario.visibility = View.VISIBLE
-
-                tipoCadastro = "Funcionário"
-                Toast.makeText(this, "$tipoCadastro", Toast.LENGTH_SHORT).show()
-            }
+            chooseUserType()
         }
 
         cadastro_Button_Cadastrar.setOnClickListener {
-            try {
-                if (validaCampos(tipoCadastro)) {
-                    if (tipoCadastro == "Funcionário") {
-                        val email = cadastro_Funcionario_Text_Email.text.toString()
-                        val senha = cadastro_Funcionario_Text_Senha.text.toString()
+            doCadastro()
+        }
+    }
 
-                        Log.d("Cadastros", "Tipo: $tipoCadastro, Email: $email, Senha: $senha")
+    private fun chooseUserType() {
+        if (cadastro_Switch_Button.isChecked) {
+            tipoCadastro = "Restaurante"
+            Toast.makeText(this, "$tipoCadastro", Toast.LENGTH_SHORT).show()
 
-                        novoCadastro(email, senha)
-                    }
+            cadastro_Layout_Funcionario.visibility = View.GONE
+            cadastro_Layout_Restaurante.visibility = View.VISIBLE
+        } else {
+            cadastro_Layout_Restaurante.visibility = View.GONE
+            cadastro_Layout_Funcionario.visibility = View.VISIBLE
 
-                    if (tipoCadastro == "Restaurante") {
-                        val email = cadastro_Restaurante_Text_Email.text.toString()
-                        val senha = cadastro_Restaurante_Text_Senha.text.toString()
+            tipoCadastro = "Funcionário"
+            Toast.makeText(this, "$tipoCadastro", Toast.LENGTH_SHORT).show()
+        }
+    }
 
-                        Log.d("Cadastros", "Tipo: $tipoCadastro, Email: $email, Senha: $senha")
+    private fun doCadastro() {
+        try {
+            if (validaCampos(tipoCadastro)) {
+                if (tipoCadastro == "Funcionário") {
+                    val email = cadastro_Funcionario_Text_Email.text.toString()
+                    val senha = cadastro_Funcionario_Text_Senha.text.toString()
 
-                        novoCadastro(email, senha)
-                    }
+                    Log.d("Cadastros", "Tipo: $tipoCadastro, Email: $email, Senha: $senha")
+
+                    novoCadastro(email, senha)
                 }
-            } catch (ex: Exception) {
-                Toast.makeText(this, "${ex.message}", Toast.LENGTH_SHORT).show()
+
+                if (tipoCadastro == "Restaurante") {
+                    val email = cadastro_Restaurante_Text_Email.text.toString()
+                    val senha = cadastro_Restaurante_Text_Senha.text.toString()
+
+                    Log.d("Cadastros", "Tipo: $tipoCadastro, Email: $email, Senha: $senha")
+
+                    novoCadastro(email, senha)
+                }
             }
+        } catch (ex: Exception) {
+            Toast.makeText(this, "${ex.message}", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -67,18 +85,44 @@ class RestauranteCadastro : AppCompatActivity() {
 
             mAuth.createUserWithEmailAndPassword(email, senha)
                 .addOnSuccessListener {
-                    startActivity(Intent(this, RestauranteLogado::class.java))
-                    finish()
-                    Log.d("Cadastros", "Sucesso")
+                    Log.d("Cadastros", "Sucesso em criar usuário no Firebase")
+                    uploadImage()
                 }
                 .addOnFailureListener {
                     Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
                     Log.d("Cadastros", "ERROR, ${it.message}")
                 }
 
-        } catch (ex: Exception){
+        } catch (ex: Exception) {
             Toast.makeText(this, "${ex.message}", Toast.LENGTH_SHORT).show()
             Log.d("Cadastros", "ERROR, ${ex.message}")
+        }
+    }
+
+    private fun uploadImage() {
+        saveUserToFirebaseDatabase()
+    }
+
+    private fun saveUserToFirebaseDatabase() {
+        val uid = mAuth.uid ?: ""
+        val ref = mDatabase.getReference("/$tipoCadastro/$uid")
+
+        try {
+            val user = if (tipoCadastro == "Operador") {
+                Operador()
+            } else {
+                Restaurante()
+            }
+
+            ref.setValue(user)
+                .addOnSuccessListener {
+                    Log.d("Cadastros", "Cadastro total de usuário completo")
+                }.addOnFailureListener {
+                    Log.d("Cadastros", "${it.message}")
+                    Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
+                }
+        } catch (ex: Exception) {
+            Log.d("Cadastros", "${ex.message}")
         }
     }
 
@@ -103,5 +147,10 @@ class RestauranteCadastro : AppCompatActivity() {
             ) return true
         }
         return false
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

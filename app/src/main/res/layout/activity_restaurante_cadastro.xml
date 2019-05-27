@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent" android:layout_height="match_parent"
         tools:context=".RestauranteCadastro"
-        android:background="@drawable/back_default">
+        android:background="@android:color/white">
 
     <TextView
             android:id="@+id/cadastro_Title_Cadastro"
@@ -16,7 +16,7 @@
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="@color/text_color"/>
+            android:textColor="@color/text_color_dark"/>
 
     <View
             android:id="@+id/cadastro_View_Title"
@@ -24,8 +24,12 @@
             android:layout_height="4sp"
             android:layout_margin="5sp"
             android:layout_centerHorizontal="true"
-            android:background="@color/text_color"
+            android:background="@color/text_color_dark"
             android:layout_below="@+id/cadastro_Title_Cadastro"/>
+
+    <include
+            android:id="@+id/cadastro_Toolbar"
+            layout="@layout/layout_toolbar"/>
 
     <Switch
             android:id="@+id/cadastro_Switch_Button"
@@ -34,6 +38,7 @@
             android:layout_marginTop="40sp"
             android:layout_centerHorizontal="true"
             android:text="Cadastro de:  "
+            android:textColor="@color/text_color_dark"
             android:textStyle="bold"
             android:textSize="20sp"
             android:textOn="  Restaurante  "
@@ -301,7 +306,7 @@
                             android:ems="10"
                             android:hint="Email"
                             android:textColorHint="@color/text_color"
-                            android:inputType="text"/>
+                            android:inputType="textEmailAddress"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -320,7 +325,7 @@
                             android:ems="10"
                             android:hint="Senha (Mínimo 6 Caracteres)"
                             android:textColorHint="@color/text_color"
-                            android:inputType="text"/>
+                            android:inputType="textPassword"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -340,6 +345,7 @@
             android:layout_alignParentBottom="true"
             android:padding="10sp"
             android:text="Cadastrar"
+            android:textColor="@color/text_color_dark"
             android:background="@drawable/round_button_default"
             android:layout_marginBottom="20sp"/>
 </RelativeLayout>
