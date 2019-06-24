@@ -1,10 +1,12 @@
 package br.com.alexandre_salgueirinho.iquefome_restaurante
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Operador
@@ -21,6 +23,8 @@ class RestauranteCadastro : AppCompatActivity() {
     var mAuth = FirebaseAuth.getInstance()
     var mDatabase = FirebaseDatabase.getInstance()
 
+    lateinit var option : Spinner
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurante_cadastro)
@@ -29,30 +33,58 @@ class RestauranteCadastro : AppCompatActivity() {
         setSupportActionBar(mToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        cadastro_Switch_Button.setOnClickListener {
-            chooseUserType()
-        }
+        userType()
+
+//        cadastro_Switch_Button.setOnClickListener {
+//            chooseUserType()
+//        }
 
         cadastro_Button_Cadastrar.setOnClickListener {
             doCadastro()
         }
     }
 
-    private fun chooseUserType() {
-        if (cadastro_Switch_Button.isChecked) {
-            tipoCadastro = "Restaurante"
-            Toast.makeText(this, "$tipoCadastro", Toast.LENGTH_SHORT).show()
+    private fun userType() {
+        option = findViewById(R.id.cadastro_Spinner)
 
-            cadastro_Layout_Funcionario.visibility = View.GONE
-            cadastro_Layout_Restaurante.visibility = View.VISIBLE
-        } else {
-            cadastro_Layout_Restaurante.visibility = View.GONE
-            cadastro_Layout_Funcionario.visibility = View.VISIBLE
+        val options = arrayOf("Funcionário", "Restaurante")
 
-            tipoCadastro = "Funcionário"
-            Toast.makeText(this, "$tipoCadastro", Toast.LENGTH_SHORT).show()
+        option.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options)
+
+        option.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                tipoCadastro = "Funcionário"
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                tipoCadastro = options.get(position)
+
+                if(tipoCadastro == "Restaurante"){
+                    cadastro_Layout_Funcionario.visibility = View.GONE
+                    cadastro_Layout_Restaurante.visibility = View.VISIBLE
+                }else {
+                    cadastro_Layout_Restaurante.visibility = View.GONE
+                    cadastro_Layout_Funcionario.visibility = View.VISIBLE
+                }
+            }
         }
     }
+
+//    private fun chooseUserType() {
+//        if (cadastro_Switch_Button.isChecked) {
+//            tipoCadastro = "Restaurante"
+//            Toast.makeText(this, "$tipoCadastro", Toast.LENGTH_SHORT).show()
+//
+//            cadastro_Layout_Funcionario.visibility = View.GONE
+//            cadastro_Layout_Restaurante.visibility = View.VISIBLE
+//        } else {
+//            cadastro_Layout_Restaurante.visibility = View.GONE
+//            cadastro_Layout_Funcionario.visibility = View.VISIBLE
+//
+//            tipoCadastro = "Funcionário"
+//            Toast.makeText(this, "$tipoCadastro", Toast.LENGTH_SHORT).show()
+//        }
+//    }
 
     private fun doCadastro() {
         try {
@@ -109,9 +141,10 @@ class RestauranteCadastro : AppCompatActivity() {
 
         try {
             val user = if (tipoCadastro == "Operador") {
-                Operador()
+                goToOperadorBuilder(uid)
+
             } else {
-                Restaurante()
+                goToRestauranteBuilder(uid)
             }
 
             ref.setValue(user)
@@ -124,6 +157,34 @@ class RestauranteCadastro : AppCompatActivity() {
         } catch (ex: Exception) {
             Log.d("Cadastros", "${ex.message}")
         }
+    }
+
+    private fun goToRestauranteBuilder(uid: String) {
+        Restaurante(
+            uid,
+            cadastro_Restaurante_Text_Nome.text.toString(),
+            cadastro_Restaurante_Text_CEP.text.toString(),
+            cadastro_Restaurante_Text_Cidade.text.toString(),
+            cadastro_Restaurante_Text_Rua.text.toString(),
+            cadastro_Restaurante_Text_Numero.text.toString(),
+            cadastro_Restaurante_Text_Email.text.toString(),
+            cadastro_Restaurante_Text_Senha.text.toString(),
+            tipoCadastro
+        )
+    }
+
+    private fun goToOperadorBuilder(uid: String) {
+        Operador(
+            uid,
+            cadastro_Funcionario_Text_Nome.text.toString(),
+            cadastro_Funcionario_Text_Sobrenome.text.toString(),
+            cadastro_Funcionario_Text_Celular.text.toString(),
+            cadastro_Funcionario_Text_Cargo.text.toString(),
+            cadastro_Funcionario_Text_Nome_Restaurante.text.toString(),
+            cadastro_Funcionario_Text_Email.text.toString(),
+            cadastro_Funcionario_Text_Senha.text.toString(),
+            tipoCadastro
+        )
     }
 
     private fun validaCampos(tipoCadastro: String): Boolean {
@@ -154,3 +215,7 @@ class RestauranteCadastro : AppCompatActivity() {
         return true
     }
 }
+
+
+
+//https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&key=YOUR_API_KEY

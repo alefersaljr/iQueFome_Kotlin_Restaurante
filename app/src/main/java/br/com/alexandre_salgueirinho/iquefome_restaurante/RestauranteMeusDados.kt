@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_restaurante_meus_dados.*
 
 class RestauranteMeusDados : AppCompatActivity() {
 
+    val idBackButton = 16908332
     lateinit var mToolbar: Toolbar
     var mAuth = FirebaseAuth.getInstance()
 
@@ -23,6 +24,7 @@ class RestauranteMeusDados : AppCompatActivity() {
 
         mToolbar = findViewById(R.id.meusDados_Toolbar)
         setSupportActionBar(mToolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         carregaDadosUsuario()
 
@@ -51,6 +53,7 @@ class RestauranteMeusDados : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
+            idBackButton -> onBackPressed()
             R.id.action_menu_icon_logout -> {
                 mAuth.signOut()
                 startActivity(Intent(this, RestauranteLogin::class.java))

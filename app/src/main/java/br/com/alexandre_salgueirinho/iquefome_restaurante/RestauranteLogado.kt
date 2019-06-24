@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_restaurante_logado.*
 
 class RestauranteLogado : AppCompatActivity() {
@@ -24,6 +26,13 @@ class RestauranteLogado : AppCompatActivity() {
         logado_Button_Add.setOnClickListener {
             goToAddFood()
         }
+
+        carregaPratos()
+    }
+
+    private fun carregaPratos() {
+        logado_ProgressBar.visibility = View.GONE
+//        val ref = FirebaseDatabase.getInstance().getReference("/pratos/")
     }
 
     override fun onStart() {

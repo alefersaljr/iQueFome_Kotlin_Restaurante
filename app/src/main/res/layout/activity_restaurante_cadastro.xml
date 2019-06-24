@@ -31,30 +31,59 @@
             android:id="@+id/cadastro_Toolbar"
             layout="@layout/layout_toolbar"/>
 
-    <Switch
-            android:id="@+id/cadastro_Switch_Button"
-            android:layout_width="wrap_content"
+    <!--<Switch-->
+            <!--android:id="@+id/cadastro_Switch_Button"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="40sp"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:text="Cadastro de:  "-->
+            <!--android:textColor="@color/text_color_dark"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textOn="  Restaurante  "-->
+            <!--android:textOff="  Funcionário  "-->
+            <!--android:showText="true"-->
+            <!--android:gravity="center"-->
+            <!--android:thumb="@drawable/sw_thumb"-->
+            <!--app:track="@drawable/sw_track"-->
+            <!--android:layout_below="@+id/cadastro_View_Title"-->
+            <!--android:layout_marginBottom="15sp"/>-->
+
+    <LinearLayout
+            android:id="@+id/cadastro_Spinner_Layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40sp"
-            android:layout_centerHorizontal="true"
-            android:text="Cadastro de:  "
-            android:textColor="@color/text_color_dark"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textOn="  Restaurante  "
-            android:textOff="  Funcionário  "
-            android:showText="true"
-            android:gravity="center"
-            android:thumb="@drawable/sw_thumb"
-            app:track="@drawable/sw_track"
             android:layout_below="@+id/cadastro_View_Title"
-            android:layout_marginBottom="15sp"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Selecione o tipo de cadastro: "
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:textColor="@color/text_color"/>
+
+        <Spinner
+                android:id="@+id/cadastro_Spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"/>
+
+    </LinearLayout>
 
     <ScrollView
             android:id="@+id/cadastro_ScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/cadastro_Switch_Button"
+            android:layout_below="@+id/cadastro_Spinner_Layout"
             android:layout_above="@+id/cadastro_Button_Cadastrar"
             android:layout_marginBottom="20sp">
 

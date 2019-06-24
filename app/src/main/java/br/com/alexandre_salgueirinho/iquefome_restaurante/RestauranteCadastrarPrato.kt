@@ -10,6 +10,7 @@ import android.widget.Toast
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.View
+import android.widget.Spinner
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_restaurante_cadastrar_prato.*
 import com.google.firebase.database.FirebaseDatabase
@@ -20,6 +21,8 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     var uriImagemSelecionada: Uri? = null
+    lateinit var tipoPratoOption : Spinner
+    lateinit var tipoComidaOption : Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +38,14 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent, 0)
         }
 
+        getOptionsSelected()
+
         pratoFotoRegister()
+    }
+
+    private fun getOptionsSelected() {
+        val pratoOptions = arrayOf("Selecione", "Entrada", "Prato Principal", "Sobremesa")
+        val comidaOptions = arrayOf("Selecione", "Carnes", "Peixes", "Pizzas", "Sorvetes", "Pratos Quentes", "Sopas", "Saladas")
     }
 
 
@@ -99,13 +109,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun savePratoToFirebaseDatabase(urlImagemPerfil: String) {
         val uid = UUID.randomUUID().toString()
-        val ref = FirebaseDatabase.getInstance().getReference("/pratos/$uid")
+        val restID = login_EditText_rest.text.toString()
+        val ref = FirebaseDatabase.getInstance().getReference("/pratos/$restID/$uid")
 
         val prato = Pratos(
             uid,
             login_EditText_nome.text.toString(),
             login_EditText_Preco.text.toString(),
-            login_EditText_rest.text.toString(),
+            restID,
             urlImagemPerfil,
             login_EditText_Descricao.text.toString(),
             login_EditText_Tipo.text.toString(),

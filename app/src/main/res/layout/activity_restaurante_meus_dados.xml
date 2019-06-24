@@ -509,29 +509,30 @@
 
         </ScrollView>
 
-        <LinearLayout
-                android:id="@+id/meusDados_Button_Layout_EditarDados"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="10dp"
-                android:orientation="vertical">
+        <!--<LinearLayout-->
+                <!--android:id="@+id/meusDados_Button_Layout_EditarDados"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_marginBottom="10dp"-->
+                <!--android:orientation="vertical">-->
 
-            <Button
-                    android:id="@+id/meusDados_Button_EditarDados"
-                    android:layout_width="wrap_content"
-                    android:layout_height="56dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:padding="10sp"
-                    android:background="@drawable/round_button_default"
-                    android:text="Editar Dados"
-                    android:drawableStart="@drawable/icon_edit"
-                    android:textColor="#2b1c00"/>
+            <!---->
+            <!--<Button-->
+                    <!--android:id="@+id/meusDados_Button_EditarDados"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="56dp"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_marginLeft="15dp"-->
+                    <!--android:layout_marginRight="15dp"-->
+                    <!--android:padding="10sp"-->
+                    <!--android:background="@drawable/round_button_default"-->
+                    <!--android:text="Editar Dados"-->
+                    <!--android:drawableStart="@drawable/icon_edit"-->
+                    <!--android:textColor="#2b1c00"/>-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
     </RelativeLayout>
 
@@ -550,5 +551,17 @@
                 android:layout_centerVertical="true"/>
 
     </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/meusDados_Button_EditarDados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            app:borderWidth="0sp"
+            android:backgroundTint="@color/text_color_dark"
+            android:src="@drawable/icon_edit"
+            android:layout_margin="16dp"
+            app:fabSize="auto"/>
 
 </RelativeLayout>
