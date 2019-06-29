@@ -71,7 +71,9 @@
                         android:ems="10"
                         android:hint="Nome do Prato"
                         android:textColor="@color/text_color"
-                        android:inputType="textEmailAddress"/>
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:ellipsize="end"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,7 +92,10 @@
                         android:ems="10"
                         android:hint="Nome do Restaurante"
                         android:textColor="@color/text_color"
-                        android:inputType="textEmailAddress"/>
+                        android:inputType="text"
+                        android:maxLength="30"
+                        android:maxLines="1"
+                        android:ellipsize="end"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,7 +104,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30sp"
-                    android:layout_marginRight="30sp">
+                    android:layout_marginRight="30sp"
+                    app:counterMaxLength="5"
+                    app:counterEnabled="true">
 
                 <EditText
                         android:id="@+id/login_EditText_Preco"
@@ -108,45 +115,96 @@
                         android:ems="10"
                         android:hint="Preço do Prato"
                         android:textColor="@color/text_color"
-                        android:inputType="textEmailAddress"/>
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:ellipsize="end"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/login_Textfild_Tipo"
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30sp"
-                    android:layout_marginRight="30sp">
+                    android:orientation="horizontal"
+                    android:layout_marginEnd="15sp"
+                    android:layout_marginStart="35sp"
+                    android:gravity="center">
 
-                <EditText
+                <TextView
+                        android:id="@+id/login_Textfild_Tipo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tipo do Prato: "
+                        android:textColor="@color/text_color"
+                        android:textSize="18dp"
+                        android:layout_gravity="center"/>
+
+                <Spinner
                         android:id="@+id/login_EditText_Tipo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:hint="Tipo do Prato"
-                        android:textColor="@color/text_color"
-                        android:inputType="textEmailAddress"/>
+                        android:layout_gravity="top|end"/>
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/login_Textfild_TipoComida"
+            <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30sp"
-                    android:layout_marginRight="30sp">
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginEnd="15sp"
+                    android:layout_marginStart="35sp"
+                    android:gravity="center">
 
-                <EditText
+                <TextView
+                        android:id="@+id/login_Textfild_TipoComida"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tipo do Prato: "
+                        android:textColor="@color/text_color"
+                        android:textSize="18dp"/>
+
+                <Spinner
                         android:id="@+id/login_EditText_TipoComida"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:hint="Tipo de Comida"
-                        android:textColor="@color/text_color"
-                        android:inputType="textEmailAddress"/>
+                        android:layout_gravity="top|end"/>
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <!--<com.google.android.material.textfield.TextInputLayout-->
+                    <!--android:id="@+id/login_Textfild_Tipo"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="30sp"-->
+                    <!--android:layout_marginRight="30sp">-->
+
+                <!--<EditText-->
+                        <!--android:id="@+id/login_EditText_Tipo"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:ems="10"-->
+                        <!--android:hint="Tipo do Prato"-->
+                        <!--android:textColor="@color/text_color"-->
+                        <!--android:inputType="textEmailAddress"/>-->
+
+            <!--</com.google.android.material.textfield.TextInputLayout>-->
+
+            <!--<com.google.android.material.textfield.TextInputLayout-->
+                    <!--android:id="@+id/login_Textfild_TipoComida"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="30sp"-->
+                    <!--android:layout_marginRight="30sp">-->
+
+                <!--<EditText-->
+                        <!--android:id="@+id/login_EditText_TipoComida"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:ems="10"-->
+                        <!--android:hint="Tipo de Comida"-->
+                        <!--android:textColor="@color/text_color"-->
+                        <!--android:inputType="textEmailAddress"/>-->
+
+            <!--</com.google.android.material.textfield.TextInputLayout>-->
 
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/login_Textfild_Descricao"
@@ -162,7 +220,7 @@
                         android:ems="10"
                         android:hint="Descrição do Prato"
                         android:textColor="@color/text_color"
-                        android:inputType="textEmailAddress"/>
+                        android:inputType="text"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 

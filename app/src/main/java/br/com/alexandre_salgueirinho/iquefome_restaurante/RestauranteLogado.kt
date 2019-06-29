@@ -32,7 +32,7 @@ class RestauranteLogado : AppCompatActivity() {
 
     private fun carregaPratos() {
         logado_ProgressBar.visibility = View.GONE
-//        val ref = FirebaseDatabase.getInstance().getReference("/pratos/")
+        val ref = FirebaseDatabase.getInstance().getReference("/pratos/")
     }
 
     override fun onStart() {

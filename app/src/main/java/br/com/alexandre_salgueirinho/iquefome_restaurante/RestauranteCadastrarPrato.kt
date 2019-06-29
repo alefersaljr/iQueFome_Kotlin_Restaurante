@@ -10,6 +10,8 @@ import android.widget.Toast
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Spinner
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_restaurante_cadastrar_prato.*
@@ -23,6 +25,8 @@ class MainActivity : AppCompatActivity() {
     var uriImagemSelecionada: Uri? = null
     lateinit var tipoPratoOption : Spinner
     lateinit var tipoComidaOption : Spinner
+    var tipoPrato = "Selecione"
+    var tipoComida = "Selecione"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,10 +47,7 @@ class MainActivity : AppCompatActivity() {
         pratoFotoRegister()
     }
 
-    private fun getOptionsSelected() {
-        val pratoOptions = arrayOf("Selecione", "Entrada", "Prato Principal", "Sobremesa")
-        val comidaOptions = arrayOf("Selecione", "Carnes", "Peixes", "Pizzas", "Sorvetes", "Pratos Quentes", "Sopas", "Saladas")
-    }
+
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -91,20 +92,54 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun validaCompos(): Boolean {
+
+
+
         if (login_EditText_nome.text.isEmpty()) {
             Toast.makeText(this, "Informe o nome do prato", Toast.LENGTH_SHORT).show()
         } else if (login_EditText_rest.text.isEmpty()) {
             Toast.makeText(this, "Informe o nome do restaurante", Toast.LENGTH_SHORT).show()
         } else if (login_EditText_Preco.text.isEmpty()) {
             Toast.makeText(this, "Informe o preço do prato", Toast.LENGTH_SHORT).show()
-        } else if (login_EditText_Tipo.text.isEmpty()) {
+        } else if (tipoPrato == "Selecione") {
             Toast.makeText(this, "Informe o tipo do prato", Toast.LENGTH_SHORT).show()
-        } else if (login_EditText_TipoComida.text.isEmpty()) {
+        } else if (tipoComida == "Selecione") {
             Toast.makeText(this, "Informe o tipo da comida", Toast.LENGTH_SHORT).show()
         } else if (login_EditText_Descricao.text.isEmpty()) {
             Toast.makeText(this, "Informe a descrição do prato", Toast.LENGTH_SHORT).show()
         } else return true
         return false
+    }
+
+    private fun getOptionsSelected() {
+        val pratoOptions = arrayOf("Selecione", "Entrada", "Prato Principal", "Sobremesa")
+        val comidaOptions = arrayOf("Selecione", "Carnes", "Peixes", "Pizzas", "Sorvetes", "Pratos Quentes", "Sopas", "Saladas")
+
+        tipoPratoOption = findViewById(R.id.login_EditText_Tipo)
+        tipoComidaOption = findViewById(R.id.login_EditText_TipoComida)
+
+        tipoPratoOption.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, pratoOptions)
+        tipoComidaOption.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, comidaOptions)
+
+        tipoPratoOption.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                Toast.makeText(this@MainActivity, "Por favor, selecione um tipo de prato", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                tipoPrato = pratoOptions.get(position)
+            }
+        }
+
+        tipoComidaOption.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                Toast.makeText(this@MainActivity, "Por favor, selecione um tipo de comida", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                tipoComida = comidaOptions.get(position)
+            }
+        }
     }
 
     private fun savePratoToFirebaseDatabase(urlImagemPerfil: String) {
@@ -119,8 +154,8 @@ class MainActivity : AppCompatActivity() {
             restID,
             urlImagemPerfil,
             login_EditText_Descricao.text.toString(),
-            login_EditText_Tipo.text.toString(),
-            login_EditText_TipoComida.text.toString()
+            tipoPrato,
+            tipoComida
         )
 
         ref.setValue(prato).addOnSuccessListener {
@@ -133,18 +168,18 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-@Parcelize
-class Pratos(
-    val pratoId: String,
-    val pratoNome: String,
-    val pratoPreco: String,
-    val pratoRestaurante: String,
-    val pratoUrlFoto: String,
-    val pratoDescricao: String,
-    val pratoTipo: String,
-    val pratoTipoComida: String
-) : Parcelable {
-    constructor() : this("", "", "", "", "", "", "", "")
-}
+//@Parcelize
+//class Pratos(
+//    val pratoId: String,
+//    val pratoNome: String,
+//    val pratoPreco: String,
+//    val pratoRestaurante: String,
+//    val pratoUrlFoto: String,
+//    val pratoDescricao: String,
+//    val pratoTipo: String,
+//    val pratoTipoComida: String
+//) : Parcelable {
+//    constructor() : this("", "", "", "", "", "", "", "")
+//}
 
 
