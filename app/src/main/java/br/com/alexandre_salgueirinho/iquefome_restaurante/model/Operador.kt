@@ -1,7 +1,7 @@
 package br.com.alexandre_salgueirinho.iquefome_restaurante.model
 
 class Operador (
-    val operadorId: String,
+    val Id: String,
     val operadorNome: String,
     val operadorSobrenome: String,
     val operadorCelular: String,

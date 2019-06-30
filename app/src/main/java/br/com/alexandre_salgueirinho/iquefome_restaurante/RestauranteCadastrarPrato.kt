@@ -8,7 +8,6 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -17,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_restaurante_cadastrar_prato.*
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -93,8 +91,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun validaCompos(): Boolean {
 
-
-
         if (login_EditText_nome.text.isEmpty()) {
             Toast.makeText(this, "Informe o nome do prato", Toast.LENGTH_SHORT).show()
         } else if (login_EditText_rest.text.isEmpty()) {
@@ -144,21 +140,31 @@ class MainActivity : AppCompatActivity() {
 
     private fun savePratoToFirebaseDatabase(urlImagemPerfil: String) {
         val uid = UUID.randomUUID().toString()
-        val restID = login_EditText_rest.text.toString()
-        val ref = FirebaseDatabase.getInstance().getReference("/pratos/$restID/$uid")
+        val restName = login_EditText_rest.text.toString()
+        val pratoName = login_EditText_nome.text.toString()
+        val refGeral = FirebaseDatabase.getInstance().getReference("/pratos/clientes/$pratoName")
+        val refRestaurante = FirebaseDatabase.getInstance().getReference("/pratos/restaurantes/$restName/$pratoName")
 
         val prato = Pratos(
             uid,
-            login_EditText_nome.text.toString(),
+            pratoName,
             login_EditText_Preco.text.toString(),
-            restID,
+            restName,
             urlImagemPerfil,
             login_EditText_Descricao.text.toString(),
             tipoPrato,
             tipoComida
         )
 
-        ref.setValue(prato).addOnSuccessListener {
+        refGeral.setValue(prato).addOnSuccessListener {
+            Log.d("ClienteCadastroActivity", "Finalmente deu boa")
+            Toast.makeText(this, "sucesso", Toast.LENGTH_SHORT).show()
+            finish()
+        }.addOnFailureListener {
+            Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
+        }
+
+        refRestaurante.setValue(prato).addOnSuccessListener {
             Log.d("ClienteCadastroActivity", "Finalmente deu boa")
             Toast.makeText(this, "sucesso", Toast.LENGTH_SHORT).show()
             finish()

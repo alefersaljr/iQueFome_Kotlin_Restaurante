@@ -158,7 +158,7 @@
                         android:id="@+id/login_Textfild_TipoComida"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Tipo do Prato: "
+                        android:text="Tipo da Comida: "
                         android:textColor="@color/text_color"
                         android:textSize="18dp"/>
 

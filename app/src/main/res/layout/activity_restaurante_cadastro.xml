@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Selecione o tipo de cadastro: "
+                android:text="Tipo de cadastro:"
                 android:textStyle="bold"
                 android:textSize="15dp"
                 android:textColor="@color/text_color"/>
@@ -153,22 +153,45 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Funcionario_Field_Cargo"
+                <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:errorEnabled="true">
+                        android:orientation="horizontal"
+                        android:gravity="center">
 
-                    <EditText
+                    <TextView
+                            android:id="@+id/cadastro_Funcionario_Field_Cargo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cargo: "
+                            android:textColor="@color/text_color"
+                            android:textSize="18dp"
+                            android:layout_gravity="center"/>
+
+                    <Spinner
                             android:id="@+id/cadastro_Funcionario_Text_Cargo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:hint="Cargo"
-                            android:textColorHint="@color/text_color"
-                            android:inputType="text"/>
+                            android:layout_gravity="top|end"/>
 
-                </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <!--<com.google.android.material.textfield.TextInputLayout-->
+                        <!--android:id="@+id/cadastro_Funcionario_Field_Cargo"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--app:errorEnabled="true">-->
+
+                    <!--<EditText-->
+                            <!--android:id="@+id/cadastro_Funcionario_Text_Cargo"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:ems="10"-->
+                            <!--android:hint="Cargo"-->
+                            <!--android:textColorHint="@color/text_color"-->
+                            <!--android:inputType="text"/>-->
+
+                <!--</com.google.android.material.textfield.TextInputLayout>-->
 
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/cadastro_Funcionario_Field_Nome_Restaurante"
@@ -200,7 +223,7 @@
                             android:ems="10"
                             android:hint="Email"
                             android:textColorHint="@color/text_color"
-                            android:inputType="text"/>
+                            android:inputType="textEmailAddress"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -267,7 +290,7 @@
                             android:ems="10"
                             android:hint="CEP"
                             android:textColorHint="@color/text_color"
-                            android:inputType="text"/>
+                            android:inputType="number"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -284,7 +307,7 @@
                             android:ems="10"
                             android:hint="Cidade"
                             android:textColorHint="@color/text_color"
-                            android:inputType="number"/>
+                            android:inputType="text"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 

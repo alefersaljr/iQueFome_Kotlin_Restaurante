@@ -10,6 +10,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_restaurante_meus_dados.*
 
 class RestauranteMeusDados : AppCompatActivity() {
@@ -35,7 +39,17 @@ class RestauranteMeusDados : AppCompatActivity() {
     }
 
     private fun carregaDadosUsuario() {
-        val tipoUsuario = "Gerente"
+//        var db = FirebaseDatabase.getInstance().getReference("/users/cadastros/restaurantes")
+//        var users = db.orderByChild("Id").equalTo(mAuth.currentUser?.uid).limitToFirst(1)
+        var tipoUsuario = "Operadors"
+
+//        users.addListenerForSingleValueEvent(object : ValueEventListener {
+//            override fun onCancelled(p0: DatabaseError) { }
+//
+//            override fun onDataChange(p0: DataSnapshot) {
+//                p0.getValue()
+//            }
+//        })
 
         if (tipoUsuario == "Operador"){
             meusDados_Layout_Operador.visibility = View.VISIBLE
