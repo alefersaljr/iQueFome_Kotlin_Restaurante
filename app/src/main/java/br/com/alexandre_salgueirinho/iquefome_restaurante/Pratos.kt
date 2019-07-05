@@ -8,11 +8,11 @@ class Pratos(
     val pratoId: String,
     val pratoNome: String,
     val pratoPreco: String,
-    val pratoRestaurante: String,
+//    val pratoRestaurante: String,
     val pratoUrlFoto: String,
     val pratoDescricao: String,
     val pratoTipo: String,
     val pratoTipoComida: String
 ): Parcelable {
-    constructor() : this("", "", "", "", "", "", "", "")
+    constructor() : this("", "", "", "", "", "", "")
 }

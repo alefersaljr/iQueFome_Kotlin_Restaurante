@@ -46,7 +46,7 @@ class RestauranteCadastro : AppCompatActivity() {
     }
 
     private fun singupType() {
-        option = findViewById(R.id.cadastro_Spinner)
+        option = this.findViewById(R.id.cadastro_Spinner)
 
         val options = arrayOf("Funcionário", "Estabelecimento")
 
@@ -122,24 +122,29 @@ class RestauranteCadastro : AppCompatActivity() {
     }
 
     private fun saveUserToFirebaseDatabase() {
-        val uid = mAuth.uid ?: ""
+        val userId = mAuth.uid ?: ""
         val uName = if (tipoCadastro == "Funcionário") (cadastro_Funcionario_Text_Nome.text.toString() + " " + cadastro_Funcionario_Text_Sobrenome.text.toString()) else (cadastro_Restaurante_Text_Nome.text.toString())
-        val ref = mDatabase.getReference("/users/cadastros/restaurantes/$tipoCadastro/$uName")
+        val ref = mDatabase.getReference("/users/cadastros/restaurantes/$tipoCadastro/$userId")
+        val refGeral = mDatabase.getReference("/users/cadastros/restaurantes/geral/$userId")
 
         try {
             if (tipoCadastro == "Funcionário") {
-                goToOperadorBuilder(uid, ref)
+                goToOperadorBuilder(userId, ref, refGeral)
             } else {
-                goToRestauranteBuilder(uid, ref)
+                goToRestauranteBuilder(userId, ref, refGeral)
             }
         } catch (ex: Exception) {
             Log.d("Cadastros", "Catch - ${ex.message}, $uName")
         }
     }
 
-    private fun goToRestauranteBuilder(uid: String, ref: DatabaseReference) {
+    private fun goToRestauranteBuilder(
+        userId: String,
+        ref: DatabaseReference,
+        refGeral: DatabaseReference
+    ) {
         val user = Restaurante(
-            uid,
+            userId,
             cadastro_Restaurante_Text_Nome.text.toString(),
             cadastro_Restaurante_Text_CEP.text.toString(),
             cadastro_Restaurante_Text_Cidade.text.toString(),
@@ -157,11 +162,25 @@ class RestauranteCadastro : AppCompatActivity() {
                 Log.d("Cadastros", "Fail - ${it.message}")
                 Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
             }
+
+        refGeral.setValue(user)
+            .addOnSuccessListener {
+                Log.d("Cadastros", "Sucesso - Cadastro total de usuário completo")
+            }.addOnFailureListener {
+                Log.d("Cadastros", "Fail - ${it.message}")
+                Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
+            }
+
+        finish()
     }
 
-    private fun goToOperadorBuilder(uid: String, ref: DatabaseReference) {
+    private fun goToOperadorBuilder(
+        userId: String,
+        ref: DatabaseReference,
+        refGeral: DatabaseReference
+    ) {
         val user = Operador(
-            uid,
+            userId,
             cadastro_Funcionario_Text_Nome.text.toString(),
             cadastro_Funcionario_Text_Sobrenome.text.toString(),
             cadastro_Funcionario_Text_Celular.text.toString(),
@@ -179,6 +198,16 @@ class RestauranteCadastro : AppCompatActivity() {
                 Log.d("Cadastros", "Fail - ${it.message}")
                 Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
             }
+
+        refGeral.setValue(user)
+            .addOnSuccessListener {
+                Log.d("Cadastros", "Sucesso - Cadastro total de usuário completo")
+            }.addOnFailureListener {
+                Log.d("Cadastros", "Fail - ${it.message}")
+                Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
+            }
+
+        finish()
     }
 
     private fun validaCampos(tipoCadastro: String): Boolean {

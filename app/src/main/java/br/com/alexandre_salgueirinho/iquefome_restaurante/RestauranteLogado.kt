@@ -3,12 +3,15 @@ package br.com.alexandre_salgueirinho.iquefome_restaurante
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -22,6 +25,7 @@ class RestauranteLogado : AppCompatActivity() {
 
     lateinit var mToolbar: Toolbar
     var mAuth = FirebaseAuth.getInstance()
+    var currentUser = mAuth.currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +38,13 @@ class RestauranteLogado : AppCompatActivity() {
             goToAddFood()
         }
 
+        logado_swipeRefresh.setOnRefreshListener {
+            Handler(Looper.getMainLooper()).postDelayed({
+                logado_RecyclerView.adapter?.notifyDataSetChanged()
+                logado_swipeRefresh.isRefreshing = false
+            }, 3000)
+        }
+
         carregaPratos()
     }
 
@@ -43,7 +54,7 @@ class RestauranteLogado : AppCompatActivity() {
 
     private fun carregaPratos() {
         logado_ProgressBar.visibility = View.GONE
-        val ref = FirebaseDatabase.getInstance().getReference("/pratos/clientes")
+        val ref = FirebaseDatabase.getInstance().getReference("/pratos/restaurantes/${currentUser?.uid}")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
 
             override fun onDataChange(p0: DataSnapshot) {
@@ -81,7 +92,7 @@ class RestauranteLogado : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        if (mAuth.currentUser == null){
+        if (currentUser == null){
             startActivity(Intent(this, RestauranteLogin::class.java))
             finish()
         }

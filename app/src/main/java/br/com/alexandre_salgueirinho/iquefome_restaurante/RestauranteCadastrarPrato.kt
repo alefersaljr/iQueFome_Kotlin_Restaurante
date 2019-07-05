@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var tipoComidaOption : Spinner
     var tipoPrato = "Selecione"
     var tipoComida = "Selecione"
+    var mAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,8 +94,8 @@ class MainActivity : AppCompatActivity() {
 
         if (login_EditText_nome.text.isEmpty()) {
             Toast.makeText(this, "Informe o nome do prato", Toast.LENGTH_SHORT).show()
-        } else if (login_EditText_rest.text.isEmpty()) {
-            Toast.makeText(this, "Informe o nome do restaurante", Toast.LENGTH_SHORT).show()
+//        } else if (login_EditText_rest.text.isEmpty()) {
+//            Toast.makeText(this, "Informe o nome do restaurante", Toast.LENGTH_SHORT).show()
         } else if (login_EditText_Preco.text.isEmpty()) {
             Toast.makeText(this, "Informe o preço do prato", Toast.LENGTH_SHORT).show()
         } else if (tipoPrato == "Selecione") {
@@ -139,17 +140,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun savePratoToFirebaseDatabase(urlImagemPerfil: String) {
-        val uid = UUID.randomUUID().toString()
-        val restName = login_EditText_rest.text.toString()
-        val pratoName = login_EditText_nome.text.toString()
-        val refGeral = FirebaseDatabase.getInstance().getReference("/pratos/clientes/$pratoName")
-        val refRestaurante = FirebaseDatabase.getInstance().getReference("/pratos/restaurantes/$restName/$pratoName")
+        val pratoId = UUID.randomUUID().toString()
+        val restId = mAuth.currentUser?.uid
+        val refGeral = FirebaseDatabase.getInstance().getReference("/pratos/clientes/$pratoId")
+        val refRestaurante = FirebaseDatabase.getInstance().getReference("/pratos/restaurantes/$restId/$pratoId")
 
         val prato = Pratos(
-            uid,
-            pratoName,
+            pratoId,
+            login_EditText_nome.text.toString(),
             login_EditText_Preco.text.toString(),
-            restName,
+//            login_EditText_rest.text.toString(),
             urlImagemPerfil,
             login_EditText_Descricao.text.toString(),
             tipoPrato,

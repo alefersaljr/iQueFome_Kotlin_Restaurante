@@ -9,18 +9,23 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Intermediario
+import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Operador
+import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Restaurante
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_restaurante_meus_dados.*
+import java.lang.Exception
 
 class RestauranteMeusDados : AppCompatActivity() {
 
     val idBackButton = 16908332
     lateinit var mToolbar: Toolbar
     var mAuth = FirebaseAuth.getInstance()
+    var db = FirebaseDatabase.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,25 +44,58 @@ class RestauranteMeusDados : AppCompatActivity() {
     }
 
     private fun carregaDadosUsuario() {
-//        var db = FirebaseDatabase.getInstance().getReference("/users/cadastros/restaurantes")
-//        var users = db.orderByChild("Id").equalTo(mAuth.currentUser?.uid).limitToFirst(1)
-        var tipoUsuario = "Operadors"
+        val userId = mAuth.currentUser?.uid
+        val ref = db.getReference("/users/cadastros/restaurantes/geral/$userId")
+        var tipoUsuario: String
 
-//        users.addListenerForSingleValueEvent(object : ValueEventListener {
-//            override fun onCancelled(p0: DatabaseError) { }
-//
-//            override fun onDataChange(p0: DataSnapshot) {
-//                p0.getValue()
-//            }
-//        })
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {}
 
-        if (tipoUsuario == "Operador"){
-            meusDados_Layout_Operador.visibility = View.VISIBLE
-            Log.d("MeusDados", "Usuário do tipo: $tipoUsuario")
-        } else if (tipoUsuario == "Gerente"){
-            meusDados_Layout_Gerente.visibility = View.VISIBLE
-            Log.d("MeusDados", "Usuário do tipo: $tipoUsuario")
-        }
+            override fun onDataChange(p0: DataSnapshot) {
+                val userIntermediario = p0.getValue(Intermediario::class.java)
+
+                try {
+                    if (userIntermediario != null) {
+                        tipoUsuario = userIntermediario.tipoUser
+
+                        if (tipoUsuario.equals("Funcionário")) {
+                            val userOperador = p0.getValue(Operador::class.java)
+
+                            if (userOperador != null) {
+                                meusDados_Layout_Operador.visibility = View.VISIBLE
+                                Log.d("MeusDados", "Usuário do tipo: $tipoUsuario")
+
+                                meusDados_Operador_Data_Nome.text = userOperador.operadorNome
+                                meusDados_Operador_Data_Sobrenome.text = userOperador.operadorSobrenome
+                                meusDados_Operador_Data_Celular.text = userOperador.operadorCelular
+                                meusDados_Operador_Data_Cargo.text = userOperador.operadorCargo
+                                meusDados_Operador_Data_Nome_Restaurante.text = userOperador.operadorNomeRestautante
+                                meusDados_Operador_Data_Email.text = userOperador.operadorEmail
+                            }
+                        } else if (tipoUsuario.equals("Gerente")) {
+                            val userGerente = p0.getValue(Restaurante::class.java)
+
+                            if (userGerente != null) {
+                                meusDados_Layout_Gerente.visibility = View.VISIBLE
+                                Log.d("MeusDados", "Usuário do tipo: $tipoUsuario")
+
+                                meusDados_Gerente_Data_Nome.text = userGerente.restaurante_Nome
+                                meusDados_Gerente_Data_CEP.text = userGerente.restaurante_CEP
+                                meusDados_Gerente_Data_Rua.text = userGerente.restaurante_Rua
+                                meusDados_Gerente_Data_Cidade.text = userGerente.restaurante_Cidade
+                                meusDados_Gerente_Data_Numero.text = userGerente.restaurante_Complemento
+                                meusDados_Gerente_Data_Email.text = userGerente.restaurante_Email
+                            }
+                        }
+                    }
+                } catch (ex: Exception) {
+                    Toast.makeText(this@RestauranteMeusDados, "Erro. ${ex.message}", Toast.LENGTH_SHORT).show()
+                    return
+                }
+            }
+        })
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

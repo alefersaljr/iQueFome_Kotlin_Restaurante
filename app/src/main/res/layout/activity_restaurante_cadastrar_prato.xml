@@ -77,27 +77,27 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/login_Textfild_rest"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30sp"
-                    android:layout_marginRight="30sp"
-                    app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
+            <!--<com.google.android.material.textfield.TextInputLayout-->
+                    <!--android:id="@+id/login_Textfild_rest"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="30sp"-->
+                    <!--android:layout_marginRight="30sp"-->
+                    <!--app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">-->
 
-                <EditText
-                        android:id="@+id/login_EditText_rest"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:hint="Nome do Restaurante"
-                        android:textColor="@color/text_color"
-                        android:inputType="text"
-                        android:maxLength="30"
-                        android:maxLines="1"
-                        android:ellipsize="end"/>
+                <!--<EditText-->
+                        <!--android:id="@+id/login_EditText_rest"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:ems="10"-->
+                        <!--android:hint="Nome do Restaurante"-->
+                        <!--android:textColor="@color/text_color"-->
+                        <!--android:inputType="text"-->
+                        <!--android:maxLength="30"-->
+                        <!--android:maxLines="1"-->
+                        <!--android:ellipsize="end"/>-->
 
-            </com.google.android.material.textfield.TextInputLayout>
+            <!--</com.google.android.material.textfield.TextInputLayout>-->
 
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/login_Textfild_Preco"
