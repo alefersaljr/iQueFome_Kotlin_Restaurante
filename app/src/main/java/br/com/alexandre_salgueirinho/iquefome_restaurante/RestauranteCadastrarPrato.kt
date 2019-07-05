@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_restaurante_cadastrar_prato.*
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.activity_restaurante_cadastro.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -46,9 +47,6 @@ class MainActivity : AppCompatActivity() {
         pratoFotoRegister()
     }
 
-
-
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -72,6 +70,8 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             } else if (validaCompos()) {
 
+                cadastrar_ProgressBar.visibility = View.VISIBLE
+
                 val nomeArquivo = UUID.randomUUID().toString()
                 val ref = FirebaseStorage.getInstance().getReference("images/$nomeArquivo")
 
@@ -85,6 +85,7 @@ class MainActivity : AppCompatActivity() {
                     }.addOnFailureListener {
                         Log.d("ClienteCadastroActivity", "Erro no upload")
                         Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
+                        cadastrar_ProgressBar.visibility = View.GONE
                     }
             }
         }
@@ -94,8 +95,6 @@ class MainActivity : AppCompatActivity() {
 
         if (login_EditText_nome.text.isEmpty()) {
             Toast.makeText(this, "Informe o nome do prato", Toast.LENGTH_SHORT).show()
-//        } else if (login_EditText_rest.text.isEmpty()) {
-//            Toast.makeText(this, "Informe o nome do restaurante", Toast.LENGTH_SHORT).show()
         } else if (login_EditText_Preco.text.isEmpty()) {
             Toast.makeText(this, "Informe o preço do prato", Toast.LENGTH_SHORT).show()
         } else if (tipoPrato == "Selecione") {
@@ -149,7 +148,6 @@ class MainActivity : AppCompatActivity() {
             pratoId,
             login_EditText_nome.text.toString(),
             login_EditText_Preco.text.toString(),
-//            login_EditText_rest.text.toString(),
             urlImagemPerfil,
             login_EditText_Descricao.text.toString(),
             tipoPrato,
@@ -159,6 +157,7 @@ class MainActivity : AppCompatActivity() {
         refGeral.setValue(prato).addOnSuccessListener {
             Log.d("ClienteCadastroActivity", "Finalmente deu boa")
             Toast.makeText(this, "sucesso", Toast.LENGTH_SHORT).show()
+            cadastrar_ProgressBar.visibility = View.GONE
             finish()
         }.addOnFailureListener {
             Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
@@ -167,10 +166,12 @@ class MainActivity : AppCompatActivity() {
         refRestaurante.setValue(prato).addOnSuccessListener {
             Log.d("ClienteCadastroActivity", "Finalmente deu boa")
             Toast.makeText(this, "sucesso", Toast.LENGTH_SHORT).show()
+            cadastrar_ProgressBar.visibility = View.GONE
             finish()
         }.addOnFailureListener {
             Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
         }
+        cadastrar_ProgressBar.visibility = View.GONE
     }
 }
 

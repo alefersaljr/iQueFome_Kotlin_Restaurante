@@ -51,7 +51,8 @@
             android:id="@+id/logado_ProgressBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#77BDBDBD">
+            android:background="#77BDBDBD"
+            android:visibility="gone">
 
 
         <ProgressBar

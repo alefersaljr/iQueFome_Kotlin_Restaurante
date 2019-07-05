@@ -494,7 +494,6 @@
             android:background="#77b8a076"
             android:visibility="gone">
 
-
         <ProgressBar
                 android:layout_width="70sp"
                 android:layout_height="70sp"

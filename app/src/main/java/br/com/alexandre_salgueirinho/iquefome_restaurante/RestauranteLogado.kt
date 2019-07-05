@@ -31,6 +31,8 @@ class RestauranteLogado : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurante_logado)
 
+        logado_ProgressBar.visibility = View.VISIBLE
+
         mToolbar = findViewById(R.id.logado_Toolbar)
         setSupportActionBar(mToolbar)
 
@@ -40,12 +42,14 @@ class RestauranteLogado : AppCompatActivity() {
 
         logado_swipeRefresh.setOnRefreshListener {
             Handler(Looper.getMainLooper()).postDelayed({
+                carregaPratos()
                 logado_RecyclerView.adapter?.notifyDataSetChanged()
                 logado_swipeRefresh.isRefreshing = false
             }, 3000)
         }
 
         carregaPratos()
+
     }
 
     companion object{
@@ -53,7 +57,6 @@ class RestauranteLogado : AppCompatActivity() {
     }
 
     private fun carregaPratos() {
-        logado_ProgressBar.visibility = View.GONE
         val ref = FirebaseDatabase.getInstance().getReference("/pratos/restaurantes/${currentUser?.uid}")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
 
@@ -84,8 +87,11 @@ class RestauranteLogado : AppCompatActivity() {
                     Toast.makeText(this@RestauranteLogado, "Em desenvolvimento, aguarde", Toast.LENGTH_SHORT).show()
                 }
                 logado_RecyclerView.adapter = adapter
+
+                logado_ProgressBar.visibility = View.GONE
             }
-            override fun onCancelled(p0: DatabaseError) {}
+            override fun onCancelled(p0: DatabaseError) {
+                logado_ProgressBar.visibility = View.GONE }
         })
     }
 

@@ -75,6 +75,7 @@ class RestauranteCadastro : AppCompatActivity() {
     private fun doCadastro() {
         try {
             if (validaCampos(tipoCadastro)) {
+                cadastro_ProgressBar.visibility = View.VISIBLE
                 if (tipoCadastro == "Funcionário") {
                     val email = cadastro_Funcionario_Text_Email.text.toString()
                     val senha = cadastro_Funcionario_Text_Senha.text.toString()
@@ -109,11 +110,13 @@ class RestauranteCadastro : AppCompatActivity() {
                 .addOnFailureListener {
                     Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
                     Log.d("Cadastros", "ERROR, ${it.message}")
+                    cadastro_ProgressBar.visibility = View.GONE
                 }
 
         } catch (ex: Exception) {
             Toast.makeText(this, "${ex.message}", Toast.LENGTH_SHORT).show()
             Log.d("Cadastros", "ERROR, ${ex.message}")
+            cadastro_ProgressBar.visibility = View.GONE
         }
     }
 
@@ -135,6 +138,7 @@ class RestauranteCadastro : AppCompatActivity() {
             }
         } catch (ex: Exception) {
             Log.d("Cadastros", "Catch - ${ex.message}, $uName")
+            cadastro_ProgressBar.visibility = View.GONE
         }
     }
 
@@ -158,6 +162,8 @@ class RestauranteCadastro : AppCompatActivity() {
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("Cadastros", "Sucesso - Cadastro total de usuário completo")
+                cadastro_ProgressBar.visibility = View.GONE
+                finish()
             }.addOnFailureListener {
                 Log.d("Cadastros", "Fail - ${it.message}")
                 Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
@@ -166,12 +172,14 @@ class RestauranteCadastro : AppCompatActivity() {
         refGeral.setValue(user)
             .addOnSuccessListener {
                 Log.d("Cadastros", "Sucesso - Cadastro total de usuário completo")
+                cadastro_ProgressBar.visibility = View.GONE
+                finish()
             }.addOnFailureListener {
                 Log.d("Cadastros", "Fail - ${it.message}")
                 Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
             }
 
-        finish()
+        cadastro_ProgressBar.visibility = View.GONE
     }
 
     private fun goToOperadorBuilder(
@@ -194,6 +202,8 @@ class RestauranteCadastro : AppCompatActivity() {
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("Cadastros", "Sucesso - Cadastro total de usuário completo")
+                cadastro_ProgressBar.visibility = View.GONE
+                finish()
             }.addOnFailureListener {
                 Log.d("Cadastros", "Fail - ${it.message}")
                 Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
@@ -202,12 +212,14 @@ class RestauranteCadastro : AppCompatActivity() {
         refGeral.setValue(user)
             .addOnSuccessListener {
                 Log.d("Cadastros", "Sucesso - Cadastro total de usuário completo")
+                cadastro_ProgressBar.visibility = View.GONE
+                finish()
             }.addOnFailureListener {
                 Log.d("Cadastros", "Fail - ${it.message}")
                 Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
             }
 
-        finish()
+        cadastro_ProgressBar.visibility = View.GONE
     }
 
     private fun validaCampos(tipoCadastro: String): Boolean {

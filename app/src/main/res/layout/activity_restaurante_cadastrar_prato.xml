@@ -256,4 +256,20 @@
             android:textSize="12sp"
             android:gravity="center"/>
 
+    <RelativeLayout
+            android:id="@+id/cadastrar_ProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#77BDBDBD"
+            android:visibility="gone">
+
+
+        <ProgressBar
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
 </RelativeLayout>

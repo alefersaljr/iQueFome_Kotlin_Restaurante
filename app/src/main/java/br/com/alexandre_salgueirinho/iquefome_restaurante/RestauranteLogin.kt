@@ -44,7 +44,8 @@ class RestauranteLogin : AppCompatActivity() {
     }
 
     private fun doLogin() {
-//        Toast.makeText(this, "Login em desenvolvimento, aguarde.", Toast.LENGTH_SHORT).show()
+
+        login_ProgressBar.visibility = View.VISIBLE
 
         val email = login_Edit_Email.text.toString()
         val password = login_Edit_Password.text.toString()
@@ -57,13 +58,15 @@ class RestauranteLogin : AppCompatActivity() {
 
                     startActivity(intent)
                     Log.d("ClienteLoginActivity", "Usuário $uid logado")
+                    login_ProgressBar.visibility = View.GONE
                     finish()
                 }
                 .addOnFailureListener {
                     Log.d("ClienteLoginActivity", "${it.message}")
                     Toast.makeText(this, "${it.message}", Toast.LENGTH_LONG).show()
+                    login_ProgressBar.visibility = View.GONE
                 }
-        }
+        }else login_ProgressBar.visibility = View.GONE
     }
 
     private fun goToForgotPassword() {

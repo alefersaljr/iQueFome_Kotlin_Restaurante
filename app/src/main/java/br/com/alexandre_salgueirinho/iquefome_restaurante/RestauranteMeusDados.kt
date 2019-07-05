@@ -28,12 +28,15 @@ class RestauranteMeusDados : AppCompatActivity() {
     var db = FirebaseDatabase.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurante_meus_dados)
 
         mToolbar = findViewById(R.id.meusDados_Toolbar)
         setSupportActionBar(mToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        meusDados_ProgressBar.visibility = View.VISIBLE
 
         carregaDadosUsuario()
 
@@ -87,9 +90,12 @@ class RestauranteMeusDados : AppCompatActivity() {
                                 meusDados_Gerente_Data_Email.text = userGerente.restaurante_Email
                             }
                         }
+
+                        meusDados_ProgressBar.visibility = View.GONE
                     }
                 } catch (ex: Exception) {
                     Toast.makeText(this@RestauranteMeusDados, "Erro. ${ex.message}", Toast.LENGTH_SHORT).show()
+                    meusDados_ProgressBar.visibility = View.GONE
                     return
                 }
             }

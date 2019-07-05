@@ -383,9 +383,7 @@
 
             </LinearLayout>
 
-
         </RelativeLayout>
-
 
     </ScrollView>
 
@@ -400,4 +398,22 @@
             android:textColor="@color/text_color_dark"
             android:background="@drawable/round_button_default"
             android:layout_marginBottom="20sp"/>
+
+
+    <RelativeLayout
+            android:id="@+id/cadastro_ProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#77BDBDBD"
+            android:visibility="gone">
+
+
+        <ProgressBar
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
 </RelativeLayout>
