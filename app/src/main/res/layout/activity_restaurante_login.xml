@@ -7,6 +7,30 @@
         android:background="@android:color/white"
         tools:context=".RestauranteLogin">
 
+    <TextView
+            android:id="@+id/login_Title_Login"
+            android:layout_width="match_parent"
+            android:layout_height="56sp"
+            android:paddingTop="13sp"
+            android:text="Login"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_color_dark"/>
+
+    <View
+            android:id="@+id/login_View_Title"
+            android:layout_width="250sp"
+            android:layout_height="4sp"
+            android:layout_margin="5sp"
+            android:layout_centerHorizontal="true"
+            android:background="@color/text_color_dark"
+            android:layout_below="@+id/login_Title_Login"/>
+
+    <include
+            android:id="@+id/login_Toolbar"
+            layout="@layout/layout_toolbar"/>
+
     <!--<ImageView-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="wrap_content"-->
