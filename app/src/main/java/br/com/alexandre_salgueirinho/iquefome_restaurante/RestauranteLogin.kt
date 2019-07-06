@@ -48,7 +48,7 @@ class RestauranteLogin : AppCompatActivity() {
             login_ProgressBar.visibility = View.VISIBLE
             getUserType()
 //            finish()
-//            startActivity(Intent(this, RestauranteLogado::class.java))
+//            startActivity(Intent(this, RestauranteGerenteLogado::class.java))
         }
     }
 
@@ -69,12 +69,12 @@ class RestauranteLogin : AppCompatActivity() {
 
                         if (tipoUsuario.equals("Gerente")) {
                             finish()
-                            startActivity(Intent(this@RestauranteLogin, RestauranteLogado::class.java))
+                            startActivity(Intent(this@RestauranteLogin, RestauranteGerenteLogado::class.java))
                         } else if (tipoUsuario.equals("Operador")) {
                             finish()
-//                            var intent = Intent(this, RestauranteLogado::class.java)
+//                            var intent = Intent(this, RestauranteGerenteLogado::class.java)
 //                            intent.putExtra("tipoUser", tipoUsuario)
-                            startActivity(Intent(this@RestauranteLogin, ReservasRecebidas::class.java))
+                            startActivity(Intent(this@RestauranteLogin, RestauranteOperadorLogado::class.java))
                         } else Toast.makeText(this@RestauranteLogin, "ERRO", Toast.LENGTH_SHORT).show()
 
                     }
@@ -98,7 +98,7 @@ class RestauranteLogin : AppCompatActivity() {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
                     val uid = FirebaseAuth.getInstance().currentUser?.uid
-                    val intent = Intent(this, RestauranteLogado::class.java)
+                    val intent = Intent(this, RestauranteGerenteLogado::class.java)
 
                     startActivity(intent)
                     Log.d("ClienteLoginActivity", "Usuário $uid logado")

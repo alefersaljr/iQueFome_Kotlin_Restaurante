@@ -8,7 +8,7 @@ import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 
-class ReservasRecebidas : AppCompatActivity() {
+class RestauranteOperadorLogado : AppCompatActivity() {
 
     lateinit var mToolbar: Toolbar
     var mAuth = FirebaseAuth.getInstance()
@@ -16,7 +16,7 @@ class ReservasRecebidas : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_reservas_recebidas)
+        setContentView(R.layout.activity_restaurante_operador_logado)
 
 //        logado_ProgressBar.visibility = View.VISIBLE
 

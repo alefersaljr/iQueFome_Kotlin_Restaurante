@@ -12,11 +12,11 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Pratos
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_restaurante_cadastrar_prato.*
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_restaurante_cadastro.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -107,7 +107,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun getOptionsSelected() {
         val pratoOptions = arrayOf("Selecione", "Entrada", "Prato Principal", "Sobremesa")
-        val comidaOptions = arrayOf("Selecione", "Carnes", "Peixes", "Pizzas", "Sorvetes", "Pratos Quentes", "Sopas", "Saladas")
+        val comidaOptions = arrayOf("Selecione", "Pratos Quentes", "Pratos Frios", "Bebidas", "Doces", "Salgados",
+                "Carnes em Geral", "Massas", "Saladas", "Lanches")
 
         tipoPratoOption = findViewById(R.id.login_EditText_Tipo)
         tipoComidaOption = findViewById(R.id.login_EditText_TipoComida)

@@ -9,9 +9,8 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Pratos
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -19,9 +18,9 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.activity_restaurante_logado.*
+import kotlinx.android.synthetic.main.activity_restaurante_gerente_logado.*
 
-class RestauranteLogado : AppCompatActivity() {
+class RestauranteGerenteLogado : AppCompatActivity() {
 
     lateinit var mToolbar: Toolbar
     var mAuth = FirebaseAuth.getInstance()
@@ -29,7 +28,7 @@ class RestauranteLogado : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_restaurante_logado)
+        setContentView(R.layout.activity_restaurante_gerente_logado)
 
         logado_ProgressBar.visibility = View.VISIBLE
 
@@ -69,7 +68,7 @@ class RestauranteLogado : AppCompatActivity() {
                 val adapter = GroupAdapter<ViewHolder>()
 
                 p0.children.forEach {
-                    Log.d("RestauranteLogado", it.toString())
+                    Log.d("RestauranteGerenteLogad", it.toString())
                     val pratoItem = it.getValue(Pratos::class.java)
 
                     if (pratoItem != null) {
@@ -89,7 +88,7 @@ class RestauranteLogado : AppCompatActivity() {
                     logado_ProgressBar.visibility = View.GONE
                     startActivity(intent)
 
-//                    Toast.makeText(this@RestauranteLogado, "Em desenvolvimento, aguarde", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@RestauranteGerenteLogado, "Em desenvolvimento, aguarde", Toast.LENGTH_SHORT).show()
                 }
                 logado_RecyclerView.adapter = adapter
 

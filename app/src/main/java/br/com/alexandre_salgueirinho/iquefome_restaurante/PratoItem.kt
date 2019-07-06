@@ -1,12 +1,12 @@
 package br.com.alexandre_salgueirinho.iquefome_restaurante
 
-import br.com.alexandre_salgueirinho.iquefome_restaurante.R
+import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Pratos
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.item_prato.view.*
 
-class PratoItem (val prato:Pratos): Item<ViewHolder>() {
+class PratoItem (val prato: Pratos): Item<ViewHolder>() {
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
         val precoPrato = "R\$ " + prato.pratoPreco

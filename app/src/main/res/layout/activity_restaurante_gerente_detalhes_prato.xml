@@ -1,10 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".RestauranteGerenteDetalhesPrato">
+        tools:context=".RestauranteGerenteDetalhesPrato"
+        android:background="@android:color/white">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+            android:id="@+id/detalhes_prato_TextView_Cadastro"
+            android:layout_width="match_parent"
+            android:layout_height="56sp"
+            android:paddingTop="13sp"
+            android:text="Composiçao"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_color_dark"/>
+
+    <View
+            android:layout_width="250sp"
+            android:layout_height="4sp"
+            android:layout_marginTop="5sp"
+            android:layout_centerHorizontal="true"
+            android:background="@color/text_color_dark"
+            android:layout_below="@+id/detalhes_prato_Toolbar"/>
+
+    <include
+            android:id="@+id/detalhes_prato_Toolbar"
+            layout="@layout/layout_toolbar"/>
+
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="20sp"
+                    android:layout_marginTop="80sp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/detalhes_prato_Prato_Foto"
+                android:layout_width="90sp"
+                android:layout_height="90sp"
+                android:layout_marginTop="15sp"
+                android:layout_marginLeft="20sp"
+                android:layout_marginRight="20sp"
+                android:src="@drawable/icon_restaurant_menu"
+                app:civ_border_width="3sp"
+                app:civ_border_color="@color/text_color"/>
+
+        <LinearLayout
+                android:id="@+id/detalhes_prato_Prato_Image_and_Name"
+                android:layout_width="match_parent"
+                android:layout_height="100sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginStart="120sp"
+                android:layout_marginEnd="20sp"
+                android:orientation="horizontal">
+
+            <LinearLayout
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".6"
+                    android:orientation="vertical">
+
+
+                <TextView
+                        android:id="@+id/detalhes_prato_Prato_Nome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5sp"
+                        android:text="Nome Prato"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_color"
+                        android:maxLines="2"
+                        android:ellipsize="end"/>
+
+                <!--<TextView-->
+                        <!--android:id="@+id/detalhes_prato_Restaurante_Nome"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="5sp"-->
+                        <!--android:text="Nome Restaurante"-->
+                        <!--android:textSize="15sp"-->
+                        <!--android:textStyle="italic"-->
+                        <!--android:textColor="@color/text_color"-->
+                        <!--android:maxLines="1"-->
+                        <!--android:ellipsize="end"/>-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".4"
+                    android:layout_marginTop="10sp"
+                    android:orientation="vertical">
+
+
+                <TextView
+                        android:id="@+id/detalhes_prato_Prato_Preco"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:gravity="bottom|end"
+                        android:text="R$ 20.00"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_color"
+                        android:maxLines="1"
+                        android:ellipsize="end"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/detalhes_prato_Prato_Image_and_Name">
+
+            <LinearLayout
+                    android:id="@+id/detalhes_prato_Descricao_Acompanhamentos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="15sp"
+                    android:paddingLeft="20sp"
+                    android:paddingRight="20sp">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <TextView
+                            android:id="@+id/tag_TipoPrato"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:paddingStart="5dp"
+                            android:paddingEnd="5dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp"
+                            android:text="teste"
+                            android:gravity="center"
+                            android:textColor="@color/text_color_light"
+                            android:background="@drawable/round_button_default" />
+
+                    <TextView
+                            android:id="@+id/tag_TipoComida"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:paddingStart="5dp"
+                            android:paddingEnd="5dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp"
+                            android:text="teste"
+                            android:gravity="center"
+                            android:textColor="@color/text_color_light"
+                            android:background="@drawable/round_button_default" />
+
+
+                </LinearLayout>
+
+                <TextView
+                        android:id="@+id/detalhes_prato_Prato_Descricao_Label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Descrição Do Prato: "
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/text_color"/>
+
+                <TextView
+                        android:id="@+id/detalhes_prato_Prato_Descricao_Data"
+                        android:layout_width="match_parent"
+                        android:layout_height="100sp"
+                        android:layout_margin="5sp"
+                        android:text="Descrição do Prato"
+                        android:maxLines="5"
+                        android:ellipsize="end"
+                        android:textColor="@color/text_color_light"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+
+    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--android:id="@+id/detalhes_prato_Edit"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_alignParentEnd="true"-->
+    <!--android:layout_marginBottom="16sp"-->
+    <!--android:layout_marginEnd="16sp"-->
+    <!--android:src="@drawable/icon_edit"-->
+    <!--app:borderWidth="0sp"-->
+    <!--android:backgroundTint="@color/text_color_dark"-->
+    <!--app:fabSize="auto"/>-->
+
+    <RelativeLayout
+            android:id="@+id/detalhes_prato_ProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#77BDBDBD"
+            android:visibility="gone">
+
+
+        <ProgressBar
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
