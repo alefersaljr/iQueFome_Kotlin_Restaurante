@@ -1,8 +1,8 @@
 package br.com.alexandre_salgueirinho.iquefome_restaurante.model
 
-class Intermediario (
-    val Id: String,
-    val tipoUser: String
+class Cliente_Intermediario (
+    val cliente_Id: String,
+    val cliente_pontos: String
 ) {
     constructor() : this ("", "")
 }

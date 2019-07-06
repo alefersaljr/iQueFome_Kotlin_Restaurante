@@ -9,7 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Intermediario
+import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Gerente_Intermediario
 import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Operador
 import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Gerente
 import com.google.firebase.auth.FirebaseAuth
@@ -64,7 +64,7 @@ class RestauranteMeusDados : AppCompatActivity() {
             override fun onCancelled(p0: DatabaseError) {}
 
             override fun onDataChange(p0: DataSnapshot) {
-                val userIntermediario = p0.getValue(Intermediario::class.java)
+                val userIntermediario = p0.getValue(Gerente_Intermediario::class.java)
 
                 try {
                     if (userIntermediario != null) {

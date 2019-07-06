@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Pratos
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_restaurante_gerente_detalhes_prat
 class RestauranteGerenteDetalhesPrato : AppCompatActivity() {
 
     private lateinit var mToolbar: androidx.appcompat.widget.Toolbar
+    var mAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +39,7 @@ class RestauranteGerenteDetalhesPrato : AppCompatActivity() {
 
     private fun getPrato(pratoID: String) {
 
-        val ref = FirebaseDatabase.getInstance().getReference("/pratos/clientes/$pratoID")
+        val ref = FirebaseDatabase.getInstance().getReference("/pratos/restaurantes/${mAuth.currentUser?.uid}/$pratoID")
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) { }
@@ -50,7 +52,6 @@ class RestauranteGerenteDetalhesPrato : AppCompatActivity() {
                         val preco = "R\$" + prato.pratoPreco
 
                         detalhes_prato_Prato_Nome.text = prato.pratoNome
-//                        detalhes_prato_Restaurante_Nome.text = prato.pratoNome
                         detalhes_prato_Prato_Descricao_Data.text = prato.pratoDescricao
                         detalhes_prato_Prato_Preco.text = preco
                         tag_TipoPrato.text = prato.pratoTipo
@@ -79,6 +80,7 @@ class RestauranteGerenteDetalhesPrato : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
+        finish()
         return true
     }
 

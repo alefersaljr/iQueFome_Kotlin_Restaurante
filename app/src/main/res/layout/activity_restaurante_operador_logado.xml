@@ -40,11 +40,27 @@
             android:layout_marginTop="20dp">
 
         <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reservas_RecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <RelativeLayout
+            android:id="@+id/reservas_ProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#77BDBDBD"
+            android:visibility="gone">
+
+
+        <ProgressBar
+                android:layout_width="70sp"
+                android:layout_height="70sp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

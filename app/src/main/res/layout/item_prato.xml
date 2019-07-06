@@ -24,7 +24,7 @@
         <LinearLayout
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
-                android:layout_weight=".7"
+                android:layout_weight=".65"
                 android:orientation="vertical"
                 android:layout_marginTop="15sp"
                 android:layout_marginBottom="15sp">
@@ -35,16 +35,16 @@
                     android:layout_height="wrap_content"
                     android:hint="NOME DO PRATO"
                     android:textColor="@color/text_color"
-                    android:textSize="20sp"
+                    android:textSize="18dp"
                     android:textStyle="bold"
-                    android:maxLines="1"
+                    android:maxLines="2"
                     android:ellipsize="end"/>
 
             <TextView
                     android:id="@+id/textView_TipoPrato"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10sp"
+                    android:layout_marginTop="5sp"
                     android:hint="Tipo Prato"
                     android:textColor="@color/text_color"
                     android:textSize="15sp"
@@ -68,7 +68,7 @@
         <LinearLayout
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
-                android:layout_weight=".25"
+                android:layout_weight=".35"
                 android:orientation="vertical"
                 android:layout_margin="15sp">
 
