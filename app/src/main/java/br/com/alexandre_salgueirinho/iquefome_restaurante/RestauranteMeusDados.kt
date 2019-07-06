@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Intermediario
 import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Operador
-import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Restaurante
+import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Gerente
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -26,6 +26,7 @@ class RestauranteMeusDados : AppCompatActivity() {
     lateinit var mToolbar: Toolbar
     var mAuth = FirebaseAuth.getInstance()
     var db = FirebaseDatabase.getInstance()
+    var tipoUsuario = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -42,14 +43,22 @@ class RestauranteMeusDados : AppCompatActivity() {
 
         meusDados_Button_EditarDados.setOnClickListener {
             Log.d("MeusDados", "Botão editar foi acionado")
-            Toast.makeText(this, "Edição de Dados em desenvolvimento, aguarde", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, RestauranteEditarDados::class.java)
+            intent.putExtra("tipoUser", tipoUsuario)
+            startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        carregaDadosUsuario()
     }
 
     private fun carregaDadosUsuario() {
         val userId = mAuth.currentUser?.uid
         val ref = db.getReference("/users/cadastros/restaurantes/geral/$userId")
-        var tipoUsuario: String
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {}
@@ -61,7 +70,7 @@ class RestauranteMeusDados : AppCompatActivity() {
                     if (userIntermediario != null) {
                         tipoUsuario = userIntermediario.tipoUser
 
-                        if (tipoUsuario.equals("Funcionário")) {
+                        if (tipoUsuario.equals("Operador")) {
                             val userOperador = p0.getValue(Operador::class.java)
 
                             if (userOperador != null) {
@@ -76,18 +85,23 @@ class RestauranteMeusDados : AppCompatActivity() {
                                 meusDados_Operador_Data_Email.text = userOperador.operadorEmail
                             }
                         } else if (tipoUsuario.equals("Gerente")) {
-                            val userGerente = p0.getValue(Restaurante::class.java)
+                            val userGerente = p0.getValue(Gerente::class.java)
 
                             if (userGerente != null) {
                                 meusDados_Layout_Gerente.visibility = View.VISIBLE
                                 Log.d("MeusDados", "Usuário do tipo: $tipoUsuario")
 
-                                meusDados_Gerente_Data_Nome.text = userGerente.restaurante_Nome
-                                meusDados_Gerente_Data_CEP.text = userGerente.restaurante_CEP
-                                meusDados_Gerente_Data_Rua.text = userGerente.restaurante_Rua
-                                meusDados_Gerente_Data_Cidade.text = userGerente.restaurante_Cidade
-                                meusDados_Gerente_Data_Numero.text = userGerente.restaurante_Complemento
-                                meusDados_Gerente_Data_Email.text = userGerente.restaurante_Email
+                                meusDados_Gerente_Data_Nome.text = userGerente.gerente_Nome
+                                meusDados_Gerente_Data_Sobrenome.text = userGerente.gerente_Sobrenome
+                                meusDados_Gerente_Data_Celular.text = userGerente.gerente_Celular
+                                meusDados_Gerente_Data_Email.text = userGerente.gerente_Email
+                                meusDados_Restaurante_Data_Nome.text = userGerente.restaurante_Nome
+                                meusDados_Restaurante_Data_Celular.text = userGerente.restaurante_Celular
+                                meusDados_Restaurante_Data_CEP.text = userGerente.restaurante_CEP
+                                meusDados_Restaurante_Data_Rua.text = userGerente.restaurante_Rua
+                                meusDados_Restaurante_Data_Cidade.text = userGerente.restaurante_Cidade
+                                meusDados_Restaurante_Data_Numero.text = userGerente.restaurante_Complemento
+                                meusDados_Restaurante_Data_Email.text = userGerente.restaurante_Email
                             }
                         }
 

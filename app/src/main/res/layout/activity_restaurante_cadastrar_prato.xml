@@ -35,8 +35,10 @@
     <ScrollView
             android:layout_below="@+id/cadastro_Title_Cadastro"
             android:layout_marginTop="20sp"
+            android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_above="@id/cadastrar_Button">
 
 
         <LinearLayout
@@ -90,7 +92,7 @@
                         <!--android:layout_width="match_parent"-->
                         <!--android:layout_height="wrap_content"-->
                         <!--android:ems="10"-->
-                        <!--android:hint="Nome do Restaurante"-->
+                        <!--android:hint="Nome do Gerente"-->
                         <!--android:textColor="@color/text_color"-->
                         <!--android:inputType="text"-->
                         <!--android:maxLength="30"-->
@@ -105,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30sp"
                     android:layout_marginRight="30sp"
-                    app:counterMaxLength="5"
+                    app:counterMaxLength="7"
                     app:counterEnabled="true">
 
                 <EditText
@@ -115,8 +117,8 @@
                         android:ems="10"
                         android:hint="Preço do Prato"
                         android:textColor="@color/text_color"
-                        android:inputType="number"
-                        android:maxLength="5"
+                        android:inputType="numberDecimal"
+                        android:maxLength="7"
                         android:ellipsize="end"/>
 
             </com.google.android.material.textfield.TextInputLayout>

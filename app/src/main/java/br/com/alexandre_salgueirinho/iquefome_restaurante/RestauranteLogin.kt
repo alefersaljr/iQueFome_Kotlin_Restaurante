@@ -8,13 +8,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Intermediario
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_restaurante_login.*
 import kotlinx.android.synthetic.main.popup_recuperar.view.*
+import java.lang.Exception
 
 class RestauranteLogin : AppCompatActivity() {
 
     val mAuth = FirebaseAuth.getInstance()
+    var db = FirebaseDatabase.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +45,46 @@ class RestauranteLogin : AppCompatActivity() {
         super.onStart()
 
         if (FirebaseAuth.getInstance().currentUser != null) {
-            finish()
-            startActivity(Intent(this, RestauranteLogado::class.java))
+            login_ProgressBar.visibility = View.VISIBLE
+            getUserType()
+//            finish()
+//            startActivity(Intent(this, RestauranteLogado::class.java))
         }
+    }
+
+    private fun getUserType() {
+        val userId = mAuth.currentUser?.uid
+        val ref = db.getReference("/users/cadastros/restaurantes/geral/$userId")
+        var tipoUsuario: String
+
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {}
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val userIntermediario = p0.getValue(Intermediario::class.java)
+
+                try {
+                    if (userIntermediario != null) {
+                        tipoUsuario = userIntermediario.tipoUser
+
+                        if (tipoUsuario.equals("Gerente")) {
+                            finish()
+                            startActivity(Intent(this@RestauranteLogin, RestauranteLogado::class.java))
+                        } else if (tipoUsuario.equals("Operador")) {
+                            finish()
+//                            var intent = Intent(this, RestauranteLogado::class.java)
+//                            intent.putExtra("tipoUser", tipoUsuario)
+                            startActivity(Intent(this@RestauranteLogin, ReservasRecebidas::class.java))
+                        } else Toast.makeText(this@RestauranteLogin, "ERRO", Toast.LENGTH_SHORT).show()
+
+                    }
+                } catch (ex: Exception) {
+                    Toast.makeText(this@RestauranteLogin, "Erro. ${ex.message}", Toast.LENGTH_SHORT).show()
+                    login_ProgressBar.visibility = View.GONE
+                    return
+                }
+            }
+        })
     }
 
     private fun doLogin() {
@@ -66,7 +110,7 @@ class RestauranteLogin : AppCompatActivity() {
                     Toast.makeText(this, "${it.message}", Toast.LENGTH_LONG).show()
                     login_ProgressBar.visibility = View.GONE
                 }
-        }else login_ProgressBar.visibility = View.GONE
+        } else login_ProgressBar.visibility = View.GONE
     }
 
     private fun goToForgotPassword() {

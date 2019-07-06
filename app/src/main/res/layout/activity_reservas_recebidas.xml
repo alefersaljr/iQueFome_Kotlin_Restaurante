@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        tools:context=".ReservasRecebidas">
+
+    <TextView
+            android:id="@+id/reservas_recebidas_Title_Reservas"
+            android:layout_width="match_parent"
+            android:layout_height="56sp"
+            android:paddingTop="13sp"
+            android:text="Reservas Recebidas"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_color_dark"/>
+
+    <View
+            android:id="@+id/reservas_recebidas_View_Title"
+            android:layout_width="250sp"
+            android:layout_height="4sp"
+            android:layout_margin="5sp"
+            android:layout_centerHorizontal="true"
+            android:background="@color/text_color_dark"
+            android:layout_below="@+id/reservas_recebidas_Title_Reservas"/>
+
+    <include
+            android:id="@+id/reservas_recebidas_Toolbar"
+            layout="@layout/layout_toolbar"/>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/reservar_recebidas_Refresh"
+            android:layout_below="@+id/reservas_recebidas_View_Title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</RelativeLayout>

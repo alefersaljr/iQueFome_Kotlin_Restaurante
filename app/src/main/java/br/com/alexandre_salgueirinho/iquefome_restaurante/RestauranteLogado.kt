@@ -49,7 +49,12 @@ class RestauranteLogado : AppCompatActivity() {
         }
 
         carregaPratos()
+    }
 
+    override fun onResume() {
+        super.onResume()
+
+        carregaPratos()
     }
 
     companion object{
@@ -78,13 +83,13 @@ class RestauranteLogado : AppCompatActivity() {
 
                     val pratoI = item as PratoItem
 
-//                    val intent = Intent(view.context, ClientePratoComposicao::class.java)
-//                    intent.putExtra(PRATO_KEY, pratoI.prato)
+                    val intent = Intent(view.context, RestauranteGerenteDetalhesPrato::class.java)
+                    intent.putExtra(PRATO_KEY, pratoI.prato)
 
                     logado_ProgressBar.visibility = View.GONE
-//                    startActivity(intent)
+                    startActivity(intent)
 
-                    Toast.makeText(this@RestauranteLogado, "Em desenvolvimento, aguarde", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@RestauranteLogado, "Em desenvolvimento, aguarde", Toast.LENGTH_SHORT).show()
                 }
                 logado_RecyclerView.adapter = adapter
 

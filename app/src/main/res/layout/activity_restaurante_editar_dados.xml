@@ -8,107 +8,71 @@
         android:background="@android:color/white">
 
     <TextView
-            android:id="@+id/cadastro_Title_Cadastro"
+            android:id="@+id/editar_dados_Title_Cadastro"
             android:layout_width="match_parent"
             android:layout_height="56sp"
             android:paddingTop="13sp"
-            android:text="Cadastro"
+            android:text="Editar Dados Pessoais"
             android:textAlignment="center"
             android:textSize="30sp"
             android:textStyle="bold"
             android:textColor="@color/text_color_dark"/>
 
     <View
-            android:id="@+id/cadastro_View_Title"
+            android:id="@+id/editar_dados_View_Title"
             android:layout_width="250sp"
             android:layout_height="4sp"
             android:layout_margin="5sp"
             android:layout_centerHorizontal="true"
             android:background="@color/text_color_dark"
-            android:layout_below="@+id/cadastro_Title_Cadastro"/>
+            android:layout_below="@+id/editar_dados_Title_Cadastro"/>
 
     <include
-            android:id="@+id/cadastro_Toolbar"
+            android:id="@+id/editar_dados_Toolbar"
             layout="@layout/layout_toolbar"/>
 
-    <!--<Switch-->
-            <!--android:id="@+id/cadastro_Switch_Button"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="40sp"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:text="Cadastro de:  "-->
-            <!--android:textColor="@color/text_color_dark"-->
-            <!--android:textStyle="bold"-->
-            <!--android:textSize="20sp"-->
-            <!--android:textOn="  Gerente  "-->
-            <!--android:textOff="  Funcionário  "-->
-            <!--android:showText="true"-->
-            <!--android:gravity="center"-->
-            <!--android:thumb="@drawable/sw_thumb"-->
-            <!--app:track="@drawable/sw_track"-->
-            <!--android:layout_below="@+id/cadastro_View_Title"-->
-            <!--android:layout_marginBottom="15sp"/>-->
-
-    <LinearLayout
-            android:id="@+id/cadastro_Spinner_Layout"
+    <TextView
+            android:id="@+id/editar_dados_Aviso"
+            android:layout_below="@+id/editar_dados_View_Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cadastro_View_Title"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:paddingLeft="20dp"
-            android:paddingRight="10dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp">
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Tipo de cadastro:"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                android:textColor="@color/text_color"/>
-
-        <Spinner
-                android:id="@+id/cadastro_Spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"/>
-
-    </LinearLayout>
+            android:textSize="13dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_atention"
+            android:text="!!! Atenção, preencher somente o que deseja atualizar !!!"
+            android:gravity="center"
+    />
 
     <ScrollView
-            android:id="@+id/cadastro_ScrollView"
+            android:id="@+id/editar_dados_ScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/cadastro_Spinner_Layout"
-            android:layout_above="@+id/cadastro_Button_Cadastrar"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/editar_dados_Aviso"
             android:layout_marginBottom="20sp">
 
         <RelativeLayout
-                android:id="@+id/cadastro_Layout_Geral"
+                android:id="@+id/editar_dados_Layout_Geral"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
             <LinearLayout
-                    android:id="@+id/cadastro_Layout_Funcionario"
+                    android:id="@+id/editar_dados_Layout_Funcionario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="30sp"
-                    android:layout_marginRight="30sp"
-                    android:orientation="vertical">
+                    android:layout_margin="50dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Funcionario_Field_Nome"
+                        android:id="@+id/editar_dados_Funcionario_Field_Nome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:errorEnabled="true">
 
                     <EditText
-                            android:id="@+id/cadastro_Funcionario_Text_Nome"
+                            android:id="@+id/editar_dados_Funcionario_Text_Nome"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -119,13 +83,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Funcionario_Field_Sobrenome"
+                        android:id="@+id/editar_dados_Funcionario_Field_Sobrenome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:errorEnabled="true">
 
                     <EditText
-                            android:id="@+id/cadastro_Funcionario_Text_Sobrenome"
+                            android:id="@+id/editar_dados_Funcionario_Text_Sobrenome"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -136,7 +100,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Funcionario_Field_Celular"
+                        android:id="@+id/editar_dados_Funcionario_Field_Celular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:errorEnabled="true"
@@ -144,7 +108,7 @@
                         app:counterMaxLength="11">
 
                     <EditText
-                            android:id="@+id/cadastro_Funcionario_Text_Celular"
+                            android:id="@+id/editar_dados_Funcionario_Text_Celular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -154,37 +118,14 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-
-                    <TextView
-                            android:id="@+id/cadastro_Funcionario_Field_Cargo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Cargo: "
-                            android:textColor="@color/text_color"
-                            android:textSize="18dp"
-                            android:layout_gravity="center"/>
-
-                    <Spinner
-                            android:id="@+id/cadastro_Funcionario_Text_Cargo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="top|end"/>
-
-                </LinearLayout>
-
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Funcionario_Field_Nome_Restaurante"
+                        android:id="@+id/editar_dados_Funcionario_Field_Nome_Restaurante"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:errorEnabled="true">
 
                     <EditText
-                            android:id="@+id/cadastro_Funcionario_Text_Nome_Restaurante"
+                            android:id="@+id/editar_dados_Funcionario_Text_Nome_Restaurante"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -195,13 +136,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Funcionario_Field_Email"
+                        android:id="@+id/editar_dados_Funcionario_Field_Email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:errorEnabled="true">
 
                     <EditText
-                            android:id="@+id/cadastro_Funcionario_Text_Email"
+                            android:id="@+id/editar_dados_Funcionario_Text_Email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -212,7 +153,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Funcionario_Field_Senha"
+                        android:id="@+id/editar_dados_Funcionario_Field_Senha"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:errorEnabled="true"
@@ -220,7 +161,7 @@
                         app:passwordToggleEnabled="true">
 
                     <EditText
-                            android:id="@+id/cadastro_Funcionario_Text_Senha"
+                            android:id="@+id/editar_dados_Funcionario_Text_Senha"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -234,12 +175,10 @@
 
 
             <LinearLayout
-                    android:id="@+id/cadastro_Layout_Restaurante"
+                    android:id="@+id/editar_dados_Layout_Gerente"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="30sp"
-                    android:layout_marginRight="30sp"
+                    android:layout_margin="50dp"
                     android:orientation="vertical"
                     android:visibility="gone">
 
@@ -257,13 +196,13 @@
                         android:background="@color/text_color_light"/>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Gerente_Field_Nome"
+                        android:id="@+id/editar_dados_Gerente_Field_Nome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:errorEnabled="true">
 
                     <EditText
-                            android:id="@+id/cadastro_Gerente_Text_Nome"
+                            android:id="@+id/editar_dados_Gerente_Text_Nome"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -274,13 +213,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Gerente_Field_Sobrenome"
+                        android:id="@+id/editar_dados_Gerente_Field_Sobrenome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:errorEnabled="true">
 
                     <EditText
-                            android:id="@+id/cadastro_Gerente_Text_Sobrenome"
+                            android:id="@+id/editar_dados_Gerente_Text_Sobrenome"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -291,13 +230,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Gerente_Field_Celular"
+                        android:id="@+id/editar_dados_Gerente_Field_Celular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:errorEnabled="true">
 
                     <EditText
-                            android:id="@+id/cadastro_Gerente_Text_Celular"
+                            android:id="@+id/editar_dados_Gerente_Text_Celular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -308,13 +247,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Gerente_Field_Email"
+                        android:id="@+id/editar_dados_Gerente_Field_Email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:errorEnabled="true">
 
                     <EditText
-                            android:id="@+id/cadastro_Gerente_Text_Email"
+                            android:id="@+id/editar_dados_Gerente_Text_Email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -325,7 +264,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Gerente_Field_Senha"
+                        android:id="@+id/editar_dados_Gerente_Field_Senha"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:errorEnabled="true"
@@ -333,7 +272,7 @@
                         app:passwordToggleEnabled="true">
 
                     <EditText
-                            android:id="@+id/cadastro_Gerente_Text_Senha"
+                            android:id="@+id/editar_dados_Gerente_Text_Senha"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -359,13 +298,13 @@
                         android:background="@color/text_color_light"/>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Restaurante_Field_Nome"
+                        android:id="@+id/editar_dados_Restaurante_Field_Nome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:errorEnabled="true">
 
                     <EditText
-                            android:id="@+id/cadastro_Restaurante_Text_Nome"
+                            android:id="@+id/editar_dados_Restaurante_Text_Nome"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -376,13 +315,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Restaurante_Field_Celular"
+                        android:id="@+id/editar_dados_Restaurante_Field_Celular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:errorEnabled="true">
 
                     <EditText
-                            android:id="@+id/cadastro_Restaurante_Text_Celular"
+                            android:id="@+id/editar_dados_Restaurante_Text_Celular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -393,7 +332,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Restaurante_Field_CEP"
+                        android:id="@+id/editar_dados_Restaurante_Field_CEP"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:counterEnabled="true"
@@ -401,7 +340,7 @@
                         app:errorEnabled="true">
 
                     <EditText
-                            android:id="@+id/cadastro_Restaurante_Text_CEP"
+                            android:id="@+id/editar_dados_Restaurante_Text_CEP"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -412,13 +351,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Restaurante_Field_Cidade"
+                        android:id="@+id/editar_dados_Restaurante_Field_Cidade"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:errorEnabled="true">
 
                     <EditText
-                            android:id="@+id/cadastro_Restaurante_Text_Cidade"
+                            android:id="@+id/editar_dados_Restaurante_Text_Cidade"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -429,13 +368,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Restaurante_Field_Rua"
+                        android:id="@+id/editar_dados_Restaurante_Field_Rua"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:errorEnabled="true">
 
                     <EditText
-                            android:id="@+id/cadastro_Restaurante_Text_Rua"
+                            android:id="@+id/editar_dados_Restaurante_Text_Rua"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -446,13 +385,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Restaurante_Field_Numero"
+                        android:id="@+id/editar_dados_Restaurante_Field_Numero"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:errorEnabled="true">
 
                     <EditText
-                            android:id="@+id/cadastro_Restaurante_Text_Numero"
+                            android:id="@+id/editar_dados_Restaurante_Text_Numero"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -463,13 +402,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/cadastro_Restaurante_Field_Email"
+                        android:id="@+id/editar_dados_Restaurante_Field_Email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:errorEnabled="true">
 
                     <EditText
-                            android:id="@+id/cadastro_Restaurante_Text_Email"
+                            android:id="@+id/editar_dados_Restaurante_Text_Email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -481,25 +420,25 @@
 
             </LinearLayout>
 
+            <Button
+                    android:id="@+id/editar_dados_Button_Editar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:padding="10sp"
+                    android:text="Editar"
+                    android:textColor="@color/text_color_dark"
+                    android:background="@drawable/round_button_default"
+                    android:layout_marginBottom="20sp"/>
+
         </RelativeLayout>
 
     </ScrollView>
 
-    <Button
-            android:id="@+id/cadastro_Button_Cadastrar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:padding="10sp"
-            android:text="Cadastrar"
-            android:textColor="@color/text_color_dark"
-            android:background="@drawable/round_button_default"
-            android:layout_marginBottom="20sp"/>
-
 
     <RelativeLayout
-            android:id="@+id/cadastro_ProgressBar"
+            android:id="@+id/editar_dados_ProgressBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#77BDBDBD"

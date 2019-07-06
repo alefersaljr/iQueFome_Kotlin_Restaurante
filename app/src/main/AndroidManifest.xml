@@ -11,6 +11,12 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".RestauranteGerenteDetalhesPrato">
+        </activity>
+        <activity android:name=".ReservasRecebidas">
+        </activity>
+        <activity android:name=".RestauranteEditarDados">
+        </activity>
         <activity android:name=".RestauranteMeusDados">
         </activity>
         <activity

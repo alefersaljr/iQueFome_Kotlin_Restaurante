@@ -36,16 +36,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/meusDados_Toolbar"
+                android:layout_above="@+id/meusDados_Button_EditarDados"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="15dp"
-                android:paddingLeft="20sp"
-                android:paddingRight="20sp"
+                android:layout_marginTop="40dp"
                 android:orientation="vertical">
 
             <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20sp"
+                    android:paddingRight="20sp">
 
 
                 <LinearLayout
@@ -53,8 +53,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginTop="50dp"
                         android:visibility="gone">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="13dp"
+                            android:text="Dados Pessoais"
+                            android:textColor="@color/text_color_light"/>
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/text_color_light"/>
 
                     <LinearLayout
                             android:layout_width="match_parent"
@@ -258,8 +269,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginTop="50dp"
                         android:visibility="gone">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="13dp"
+                            android:text="Dados Pessoais"
+                            android:textColor="@color/text_color_light"/>
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/text_color_light"/>
 
                     <LinearLayout
                             android:layout_width="match_parent"
@@ -285,7 +307,181 @@
                                 android:layout_marginTop="10dp"
                                 android:layout_marginStart="5sp"
                                 android:fontFamily="sans-serif"
-                                android:text="Nome Usuário"
+                                android:text="Nome Gerente"
+                                android:textColor="@color/text_color_light"
+                                android:textSize="16sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Label_Sobrenome"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".23"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="sans-serif"
+                                android:text="Sobrenome:"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Data_Sobrenome"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".5"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="5sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Sobrenome Gerente"
+                                android:textColor="@color/text_color_light"
+                                android:textSize="16sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Label_Celular"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".12"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="sans-serif"
+                                android:text="Celular:"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Data_Celular"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".5"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="5sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Celular Gerente"
+                                android:textColor="@color/text_color_light"
+                                android:textSize="16sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Label_Email"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".1"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="sans-serif"
+                                android:text="Email:"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/meusDados_Gerente_Data_Email"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".5"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="5sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Email Gerente"
+                                android:textColor="@color/text_color_light"
+                                android:textSize="16sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:textSize="13dp"
+                            android:text="Dados Restaurante"
+                            android:textColor="@color/text_color_light"/>
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/text_color_light"/>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/meusDados_Restaurante_Label_Nome"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".11"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="sans-serif"
+                                android:text="Nome:"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/meusDados_Restaurante_Data_Nome"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".5"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="5sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Nome Restaurante"
+                                android:textColor="@color/text_color_light"
+                                android:textSize="16sp"
+                                android:maxLines="1"
+                                android:ellipsize="end"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/meusDados_Restaurante_Label_Celular"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".12"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="sans-serif"
+                                android:text="Celular:"
+                                android:textColor="@color/text_color"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/meusDados_Restaurante_Data_Celular"
+                                android:layout_width="0sp"
+                                android:layout_height="25sp"
+                                android:layout_weight=".5"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="5sp"
+                                android:fontFamily="sans-serif"
+                                android:text="Celular Restaurante"
                                 android:textColor="@color/text_color_light"
                                 android:textSize="16sp"
                                 android:maxLines="1"
@@ -300,7 +496,7 @@
                             android:layout_alignParentStart="true">
 
                         <TextView
-                                android:id="@+id/meusDados_Gerente_Label_CEP"
+                                android:id="@+id/meusDados_Restaurante_Label_CEP"
                                 android:layout_width="0sp"
                                 android:layout_height="25sp"
                                 android:layout_weight=".08"
@@ -311,14 +507,14 @@
                                 android:textSize="18sp"/>
 
                         <TextView
-                                android:id="@+id/meusDados_Gerente_Data_CEP"
+                                android:id="@+id/meusDados_Restaurante_Data_CEP"
                                 android:layout_width="0sp"
                                 android:layout_height="25sp"
                                 android:layout_weight=".5"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginStart="5sp"
                                 android:fontFamily="sans-serif"
-                                android:text="CEP do Usuário"
+                                android:text="CEP do Restaurante"
                                 android:textColor="@color/text_color_light"
                                 android:textSize="16sp"
                                 android:maxLines="1"
@@ -333,7 +529,7 @@
                             android:layout_alignParentStart="true">
 
                         <TextView
-                                android:id="@+id/meusDados_Gerente_Label_Cidade"
+                                android:id="@+id/meusDados_Restaurante_Label_Cidade"
                                 android:layout_width="0sp"
                                 android:layout_height="25sp"
                                 android:layout_weight=".11"
@@ -344,7 +540,7 @@
                                 android:textSize="18sp"/>
 
                         <TextView
-                                android:id="@+id/meusDados_Gerente_Data_Cidade"
+                                android:id="@+id/meusDados_Restaurante_Data_Cidade"
                                 android:layout_width="0sp"
                                 android:layout_height="25sp"
                                 android:layout_weight=".45"
@@ -366,7 +562,7 @@
                             android:layout_alignParentStart="true">
 
                         <TextView
-                                android:id="@+id/meusDados_Gerente_Label_Rua"
+                                android:id="@+id/meusDados_Restaurante_Label_Rua"
                                 android:layout_width="0sp"
                                 android:layout_height="25sp"
                                 android:layout_weight=".06"
@@ -377,14 +573,14 @@
                                 android:textSize="18sp"/>
 
                         <TextView
-                                android:id="@+id/meusDados_Gerente_Data_Rua"
+                                android:id="@+id/meusDados_Restaurante_Data_Rua"
                                 android:layout_width="0sp"
                                 android:layout_height="25sp"
                                 android:layout_weight=".45"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginStart="5sp"
                                 android:fontFamily="sans-serif"
-                                android:text="Rua do Usuário"
+                                android:text="Rua do Restaurante"
                                 android:textColor="@color/text_color_light"
                                 android:textSize="16sp"
                                 android:maxLines="1"
@@ -399,7 +595,7 @@
                             android:layout_alignParentStart="true">
 
                         <TextView
-                                android:id="@+id/meusDados_Gerente_Label_Numero"
+                                android:id="@+id/meusDados_Restaurante_Label_Numero"
                                 android:layout_width="0sp"
                                 android:layout_height="25sp"
                                 android:layout_weight=".27"
@@ -410,7 +606,7 @@
                                 android:textSize="18sp"/>
 
                         <TextView
-                                android:id="@+id/meusDados_Gerente_Data_Numero"
+                                android:id="@+id/meusDados_Restaurante_Data_Numero"
                                 android:layout_width="0sp"
                                 android:layout_height="25sp"
                                 android:layout_weight=".45"
@@ -432,7 +628,7 @@
                             android:layout_alignParentStart="true">
 
                         <TextView
-                                android:id="@+id/meusDados_Gerente_Label_Email"
+                                android:id="@+id/meusDados_Restaurante_Label_Email"
                                 android:layout_width="0sp"
                                 android:layout_height="25sp"
                                 android:layout_weight=".09"
@@ -443,7 +639,7 @@
                                 android:textSize="18sp"/>
 
                         <TextView
-                                android:id="@+id/meusDados_Gerente_Data_Email"
+                                android:id="@+id/meusDados_Restaurante_Data_Email"
                                 android:layout_width="0sp"
                                 android:layout_height="25sp"
                                 android:layout_weight=".45"
@@ -461,31 +657,6 @@
             </RelativeLayout>
 
         </ScrollView>
-
-        <!--<LinearLayout-->
-                <!--android:id="@+id/meusDados_Button_Layout_EditarDados"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_alignParentBottom="true"-->
-                <!--android:layout_centerHorizontal="true"-->
-                <!--android:layout_marginBottom="10dp"-->
-                <!--android:orientation="vertical">-->
-
-            <!---->
-            <!--<Button-->
-                    <!--android:id="@+id/meusDados_Button_EditarDados"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="56dp"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:layout_marginLeft="15dp"-->
-                    <!--android:layout_marginRight="15dp"-->
-                    <!--android:padding="10sp"-->
-                    <!--android:background="@drawable/round_button_default"-->
-                    <!--android:text="Editar Dados"-->
-                    <!--android:drawableStart="@drawable/icon_edit"-->
-                    <!--android:textColor="#2b1c00"/>-->
-
-        <!--</LinearLayout>-->
 
     <RelativeLayout
             android:id="@+id/meusDados_ProgressBar"
@@ -511,7 +682,9 @@
             app:borderWidth="0sp"
             android:backgroundTint="@color/text_color_dark"
             android:src="@drawable/icon_edit"
-            android:layout_margin="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="5dp"
             app:fabSize="auto"/>
 
 </RelativeLayout>

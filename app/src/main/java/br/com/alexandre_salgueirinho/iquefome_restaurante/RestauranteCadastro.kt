@@ -10,7 +10,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Operador
-import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Restaurante
+import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Gerente
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -19,14 +19,12 @@ import java.lang.Exception
 
 class RestauranteCadastro : AppCompatActivity() {
 
-    var tipoCadastro = "Funcionário"
+    var tipoCadastro = "Operador"
     lateinit var mToolbar: Toolbar
     var mAuth = FirebaseAuth.getInstance()
     var mDatabase = FirebaseDatabase.getInstance()
 
     lateinit var option : Spinner
-    lateinit var cargoOption : Spinner
-    var cargo = "Selecione"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,8 +36,6 @@ class RestauranteCadastro : AppCompatActivity() {
 
         singupType()
 
-        getCargoOptions()
-
         cadastro_Button_Cadastrar.setOnClickListener {
             doCadastro()
         }
@@ -48,19 +44,19 @@ class RestauranteCadastro : AppCompatActivity() {
     private fun singupType() {
         option = this.findViewById(R.id.cadastro_Spinner)
 
-        val options = arrayOf("Funcionário", "Estabelecimento")
+        val options = arrayOf("Operador", "Gerente")
 
         option.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options)
 
         option.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                tipoCadastro = "Funcionário"
+                tipoCadastro = "Operador"
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 tipoCadastro = options.get(position)
 
-                if(tipoCadastro == "Estabelecimento"){
+                if(tipoCadastro == "Gerente"){
                     cadastro_Layout_Funcionario.visibility = View.GONE
                     cadastro_Layout_Restaurante.visibility = View.VISIBLE
                 }else {
@@ -76,7 +72,7 @@ class RestauranteCadastro : AppCompatActivity() {
         try {
             if (validaCampos(tipoCadastro)) {
                 cadastro_ProgressBar.visibility = View.VISIBLE
-                if (tipoCadastro == "Funcionário") {
+                if (tipoCadastro == "Operador") {
                     val email = cadastro_Funcionario_Text_Email.text.toString()
                     val senha = cadastro_Funcionario_Text_Senha.text.toString()
 
@@ -85,9 +81,9 @@ class RestauranteCadastro : AppCompatActivity() {
                     novoCadastro(email, senha)
                 }
 
-                if (tipoCadastro == "Estabelecimento") {
-                    val email = cadastro_Restaurante_Text_Email.text.toString()
-                    val senha = cadastro_Restaurante_Text_Senha.text.toString()
+                if (tipoCadastro == "Gerente") {
+                    val email = cadastro_Gerente_Text_Email.text.toString()
+                    val senha = cadastro_Gerente_Text_Senha.text.toString()
 
                     Log.d("Cadastros", "Tipo: $tipoCadastro, Email: $email, Senha: $senha")
 
@@ -126,15 +122,15 @@ class RestauranteCadastro : AppCompatActivity() {
 
     private fun saveUserToFirebaseDatabase() {
         val userId = mAuth.uid ?: ""
-        val uName = if (tipoCadastro == "Funcionário") (cadastro_Funcionario_Text_Nome.text.toString() + " " + cadastro_Funcionario_Text_Sobrenome.text.toString()) else (cadastro_Restaurante_Text_Nome.text.toString())
+        val uName = if (tipoCadastro == "Operador") (cadastro_Funcionario_Text_Nome.text.toString() + " " + cadastro_Funcionario_Text_Sobrenome.text.toString()) else (cadastro_Restaurante_Text_Nome.text.toString())
         val ref = mDatabase.getReference("/users/cadastros/restaurantes/$tipoCadastro/$userId")
         val refGeral = mDatabase.getReference("/users/cadastros/restaurantes/geral/$userId")
 
         try {
-            if (tipoCadastro == "Funcionário") {
+            if (tipoCadastro == "Operador") {
                 goToOperadorBuilder(userId, ref, refGeral)
             } else {
-                goToRestauranteBuilder(userId, ref, refGeral)
+                goToGerenteBuilder(userId, ref, refGeral)
             }
         } catch (ex: Exception) {
             Log.d("Cadastros", "Catch - ${ex.message}, $uName")
@@ -142,20 +138,21 @@ class RestauranteCadastro : AppCompatActivity() {
         }
     }
 
-    private fun goToRestauranteBuilder(
-        userId: String,
-        ref: DatabaseReference,
-        refGeral: DatabaseReference
-    ) {
-        val user = Restaurante(
+    private fun goToGerenteBuilder(userId: String, ref: DatabaseReference, refGeral: DatabaseReference) {
+        val user = Gerente(
             userId,
+            cadastro_Gerente_Text_Nome.text.toString(),
+            cadastro_Gerente_Text_Sobrenome.text.toString(),
+            cadastro_Gerente_Text_Celular.text.toString(),
+            cadastro_Gerente_Text_Email.text.toString(),
+            cadastro_Gerente_Text_Senha.text.toString(),
             cadastro_Restaurante_Text_Nome.text.toString(),
+            cadastro_Restaurante_Text_Celular.text.toString(),
             cadastro_Restaurante_Text_CEP.text.toString(),
             cadastro_Restaurante_Text_Cidade.text.toString(),
             cadastro_Restaurante_Text_Rua.text.toString(),
             cadastro_Restaurante_Text_Numero.text.toString(),
             cadastro_Restaurante_Text_Email.text.toString(),
-            cadastro_Restaurante_Text_Senha.text.toString(),
             tipoCadastro
         )
 
@@ -182,17 +179,13 @@ class RestauranteCadastro : AppCompatActivity() {
         cadastro_ProgressBar.visibility = View.GONE
     }
 
-    private fun goToOperadorBuilder(
-        userId: String,
-        ref: DatabaseReference,
-        refGeral: DatabaseReference
-    ) {
+    private fun goToOperadorBuilder(userId: String, ref: DatabaseReference, refGeral: DatabaseReference) {
         val user = Operador(
             userId,
             cadastro_Funcionario_Text_Nome.text.toString(),
             cadastro_Funcionario_Text_Sobrenome.text.toString(),
             cadastro_Funcionario_Text_Celular.text.toString(),
-            cargo,
+            tipoCadastro,
             cadastro_Funcionario_Text_Nome_Restaurante.text.toString(),
             cadastro_Funcionario_Text_Email.text.toString(),
             cadastro_Funcionario_Text_Senha.text.toString(),
@@ -224,18 +217,21 @@ class RestauranteCadastro : AppCompatActivity() {
 
     private fun validaCampos(tipoCadastro: String): Boolean {
 
-        if (tipoCadastro == "Estabelecimento") {
-            if (!(cadastro_Restaurante_Text_Nome.text.isEmpty() ||
+        if (tipoCadastro == "Gerente") {
+            if (!(cadastro_Gerente_Text_Nome.text.isEmpty() ||
+                        cadastro_Gerente_Text_Sobrenome.text.isEmpty() ||
+                        cadastro_Gerente_Text_Celular.text.isEmpty() ||
+                        cadastro_Gerente_Text_Email.text.isEmpty() ||
+                        cadastro_Gerente_Text_Senha.text.isEmpty() ||
+                        cadastro_Restaurante_Text_Nome.text.isEmpty() ||
                         cadastro_Restaurante_Text_CEP.text.isEmpty() ||
                         cadastro_Restaurante_Text_Cidade.text.isEmpty() ||
                         cadastro_Restaurante_Text_Rua.text.isEmpty() ||
                         cadastro_Restaurante_Text_Numero.text.isEmpty() ||
-                        cadastro_Restaurante_Text_Email.text.isEmpty() ||
-                        cadastro_Restaurante_Text_Senha.text.isEmpty())
+                        cadastro_Restaurante_Text_Email.text.isEmpty())
             ) return true
-        } else if (tipoCadastro == "Funcionário") {
-            if (cargo == "Selecione") Toast.makeText(this, "Selecione um cargo", Toast.LENGTH_SHORT).show()
-            else if (!(cadastro_Funcionario_Text_Nome.text.isEmpty() ||
+        } else if (tipoCadastro == "Operador") {
+            if (!(cadastro_Funcionario_Text_Nome.text.isEmpty() ||
                         cadastro_Funcionario_Text_Sobrenome.text.isEmpty() ||
                         cadastro_Funcionario_Text_Celular.text.isEmpty() ||
                         cadastro_Funcionario_Text_Nome_Restaurante.text.isEmpty() ||
@@ -244,24 +240,6 @@ class RestauranteCadastro : AppCompatActivity() {
             ) return true
         }
         return false
-    }
-
-    private fun getCargoOptions() {
-        val cargoOptions = arrayOf("Selecione", "Operador", "Gerente")
-
-        cargoOption = findViewById(R.id.cadastro_Funcionario_Text_Cargo)
-
-        cargoOption.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cargoOptions)
-
-        cargoOption.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                Toast.makeText(this@RestauranteCadastro, "Por favor, selecione um cargo", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                cargo = cargoOptions.get(position)
-            }
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

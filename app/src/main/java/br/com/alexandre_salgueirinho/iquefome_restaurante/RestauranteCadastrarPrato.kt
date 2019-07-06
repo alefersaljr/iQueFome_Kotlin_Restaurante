@@ -32,8 +32,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurante_cadastrar_prato)
 
-        FirebaseAuth.getInstance().signInWithEmailAndPassword("a.salgueirinho@cinq.com.br", "123456")
-
         cadastro_Button_Image.setOnClickListener {
             Log.d("ClienteCadastroActivity", "Try to show photo")
 
@@ -143,6 +141,8 @@ class MainActivity : AppCompatActivity() {
         val restId = mAuth.currentUser?.uid
         val refGeral = FirebaseDatabase.getInstance().getReference("/pratos/clientes/$pratoId")
         val refRestaurante = FirebaseDatabase.getInstance().getReference("/pratos/restaurantes/$restId/$pratoId")
+        val refTipoPrato = FirebaseDatabase.getInstance().getReference("/pratos/tipoPrato/$tipoPrato/$pratoId")
+        val refTipoComida = FirebaseDatabase.getInstance().getReference("/pratos/tipoComida/$tipoComida/$pratoId")
 
         val prato = Pratos(
             pratoId,
@@ -164,6 +164,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         refRestaurante.setValue(prato).addOnSuccessListener {
+            Log.d("ClienteCadastroActivity", "Finalmente deu boa")
+            Toast.makeText(this, "sucesso", Toast.LENGTH_SHORT).show()
+            cadastrar_ProgressBar.visibility = View.GONE
+            finish()
+        }.addOnFailureListener {
+            Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
+        }
+
+        refTipoPrato.setValue(prato).addOnSuccessListener {
+            Log.d("ClienteCadastroActivity", "Finalmente deu boa")
+            Toast.makeText(this, "sucesso", Toast.LENGTH_SHORT).show()
+            cadastrar_ProgressBar.visibility = View.GONE
+            finish()
+        }.addOnFailureListener {
+            Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
+        }
+
+        refTipoComida.setValue(prato).addOnSuccessListener {
             Log.d("ClienteCadastroActivity", "Finalmente deu boa")
             Toast.makeText(this, "sucesso", Toast.LENGTH_SHORT).show()
             cadastrar_ProgressBar.visibility = View.GONE
