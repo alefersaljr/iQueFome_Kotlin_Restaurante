@@ -98,7 +98,8 @@ class RestauranteLogin : AppCompatActivity() {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
                     val uid = FirebaseAuth.getInstance().currentUser?.uid
-                    val intent = Intent(this, RestauranteGerenteLogado::class.java)
+//                    val intent = Intent(this, RestauranteGerenteLogado::class.java)
+                    getUserType()
 
                     startActivity(intent)
                     Log.d("ClienteLoginActivity", "Usuário $uid logado")

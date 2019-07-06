@@ -12,10 +12,14 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Gerente
 import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Pratos
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import kotlinx.android.synthetic.main.activity_restaurante_cadastrar_prato.*
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 
@@ -26,7 +30,10 @@ class MainActivity : AppCompatActivity() {
     lateinit var tipoComidaOption : Spinner
     var tipoPrato = "Selecione"
     var tipoComida = "Selecione"
+    var restNome = ""
     var mAuth = FirebaseAuth.getInstance()
+    var db = FirebaseDatabase.getInstance()
+    val restId = mAuth.currentUser?.uid
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +47,26 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent, 0)
         }
 
+        getUserData()
+
         getOptionsSelected()
 
         pratoFotoRegister()
+    }
+
+    private fun getUserData() {
+        val ref = db.getReference("/users/cadastros/restaurantes/geral/$restId")
+
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {}
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val userGerente = p0.getValue(Gerente::class.java)
+
+                restNome = userGerente?.restaurante_Nome.toString()
+
+            }
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -139,11 +163,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun savePratoToFirebaseDatabase(urlImagemPerfil: String) {
         val pratoId = UUID.randomUUID().toString()
-        val restId = mAuth.currentUser?.uid
-        val refGeral = FirebaseDatabase.getInstance().getReference("/pratos/clientes/$pratoId")
-        val refRestaurante = FirebaseDatabase.getInstance().getReference("/pratos/restaurantes/$restId/$pratoId")
-        val refTipoPrato = FirebaseDatabase.getInstance().getReference("/pratos/tipoPrato/$tipoPrato/$pratoId")
-        val refTipoComida = FirebaseDatabase.getInstance().getReference("/pratos/tipoComida/$tipoComida/$pratoId")
+        val refGeral = db.getReference("/pratos/clientes/$pratoId")
+        val refRestaurante = db.getReference("/pratos/restaurantes/$restId/$pratoId")
+        val refTipoPrato = db.getReference("/pratos/tipoPrato/$tipoPrato/$pratoId")
+        val refTipoComida = db.getReference("/pratos/tipoComida/$tipoComida/$pratoId")
+
+
 
         val prato = Pratos(
             pratoId,
@@ -152,7 +177,9 @@ class MainActivity : AppCompatActivity() {
             urlImagemPerfil,
             login_EditText_Descricao.text.toString(),
             tipoPrato,
-            tipoComida
+            tipoComida,
+            restNome,
+            restId.toString()
         )
 
         refGeral.setValue(prato).addOnSuccessListener {
@@ -190,6 +217,7 @@ class MainActivity : AppCompatActivity() {
         }.addOnFailureListener {
             Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
         }
+
         cadastrar_ProgressBar.visibility = View.GONE
     }
 }
