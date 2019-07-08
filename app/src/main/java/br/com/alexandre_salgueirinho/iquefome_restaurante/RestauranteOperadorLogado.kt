@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import br.com.alexandre_salgueirinho.iquefome_restaurante.model.Reservas
 import com.google.firebase.auth.FirebaseAuth
@@ -23,7 +24,6 @@ import kotlinx.android.synthetic.main.activity_restaurante_operador_logado.*
 class RestauranteOperadorLogado : AppCompatActivity() {
 
     lateinit var mToolbar: Toolbar
-    var mAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,11 +42,24 @@ class RestauranteOperadorLogado : AppCompatActivity() {
             }, 3000)
         }
 
+        reservas_Button_Feedback.setOnClickListener {
+            gotoFeedback()
+        }
+
+        reservas_Button_Feedback.setOnClickListener {
+            Toast.makeText(applicationContext, "OK", Toast.LENGTH_SHORT).show()
+        }
+
         carregaReservas()
     }
 
+    private fun gotoFeedback() {
+        Toast.makeText(applicationContext, "Em dev, aguarde", Toast.LENGTH_SHORT).show()
+    }
+
     private fun carregaReservas() {
-        val ref = FirebaseDatabase.getInstance().getReference("/reservas/restaurante")
+        var uId = "kfFu0yIEwzM3CNuqLupYkNGUjS13"
+        val ref = FirebaseDatabase.getInstance().getReference("/reservas/restaurante/$uId")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
 
             override fun onDataChange(p0: DataSnapshot) {

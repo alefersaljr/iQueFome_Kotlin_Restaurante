@@ -174,12 +174,12 @@ class MainActivity : AppCompatActivity() {
             pratoId,
             login_EditText_nome.text.toString(),
             login_EditText_Preco.text.toString(),
+            restNome,
+            restId.toString(),
             urlImagemPerfil,
             login_EditText_Descricao.text.toString(),
             tipoPrato,
-            tipoComida,
-            restNome,
-            restId.toString()
+            tipoComida
         )
 
         refGeral.setValue(prato).addOnSuccessListener {

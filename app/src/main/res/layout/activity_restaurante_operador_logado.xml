@@ -37,7 +37,9 @@
             android:layout_below="@+id/reservas_recebidas_View_Title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_above="@+id/reservas_Button_Feedback">
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/reservas_RecyclerView"
@@ -46,6 +48,18 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <Button
+            android:id="@+id/reservas_Button_Feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:padding="10dp"
+            android:background="@drawable/round_button_default"
+            android:text="feedback recebidos"
+            android:textColor="@color/text_color"/>
 
     <RelativeLayout
             android:id="@+id/reservas_ProgressBar"
